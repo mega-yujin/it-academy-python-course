@@ -24,11 +24,14 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest
+        pip install flake8 pytest pydocstyle
 #        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
-        flake8 $(git ls-files '*.py') --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 $(git ls-files '*.py') --count --show-source
+    - name: Lint with pydocstyle
+      run: |
+        pydocstyle $(git ls-files '*.py')
     - name: Test with pytest
       run: |
         pytest
