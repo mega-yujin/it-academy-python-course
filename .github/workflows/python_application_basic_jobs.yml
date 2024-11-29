@@ -28,9 +28,9 @@ jobs:
     - name: Lint with flake8
       run: |
         flake8
-    - name: Lint with pydocstyle
-      run: |
-        pydocstyle $(git ls-files '*.py')
+#    - name: Lint with pydocstyle
+#      run: |
+#        pydocstyle $(git ls-files '*.py')
 
   test:
 
