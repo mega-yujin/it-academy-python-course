@@ -27,7 +27,7 @@ jobs:
         pip install wemake-python-styleguide pydocstyle
     - name: Lint with flake8
       run: |
-        flake8 $(git ls-files '*.py') --count --show-source
+        flake8
     - name: Lint with pydocstyle
       run: |
         pydocstyle $(git ls-files '*.py')
