@@ -1,4 +1,3 @@
-flake8
+wemake-python-styleguide
 pydocstyle
-ddt
-nose
+pytest
