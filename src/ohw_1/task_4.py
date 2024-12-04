@@ -1,7 +1,7 @@
-user = {"is_admin" : bool(input("Является админом? (True/False)")),
-        "is_active" : bool(input("Является активным пользователем? (True/False)")),
-        "has_permission" : bool(input("Имеет разрешение? (True/False)")),
-        "is_blocked" : bool(input("Заблокирован? (True/False)"))}
+user = {"is_admin" : int(input("Является админом? (1/0)")),
+        "is_active" : int(input("Является активным пользователем? (1/0)")),
+        "has_permission" : int(input("Имеет разрешение? (1/0)")),
+        "is_blocked" : int(input("Заблокирован? (1/0)"))}
 is_allowed = False
 
 if not user["is_blocked"] and (user["is_admin"] or (user["is_active"] and user["has_permission"])):
