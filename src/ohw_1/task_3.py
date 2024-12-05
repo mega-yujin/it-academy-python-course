@@ -1,15 +1,21 @@
+seasons = {
+    'winter': [12, 1, 2],
+    'spring': [3, 4, 5],
+    'summer': [6, 7, 8],
+    'fall': [9, 10, 11],
+}
 month = int(input('Введите число: '))
 
 match month:
-    case month if month < 1:
+    case m if m < 1:
         print('Значение слишком маленькое')
-    case 12 | 1 | 2:
+    case m if m in seasons['winter']:
         print('Зима')
-    case 3 | 4 | 5:
+    case m if m in seasons['spring']:
         print('Весна')
-    case 6 | 7 | 8:
+    case m if m in seasons['summer']:
         print('Лето')
-    case 9 | 10 | 11:
+    case m if m in seasons['fall']:
         print('Осень')
     case _:
         print('Значение слишком большое')

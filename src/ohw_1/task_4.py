@@ -1,8 +1,8 @@
 user = {
-    'is_admin' : int(input('Является админом? (1/0)')),
-    'is_active' : int(input('Является активным пользователем? (1/0)')),
-    'has_permissio' : int(input('Имеет разрешение? (1/0)')),
-    'is_blocked' : int(input('Заблокирован? (1/0)'))
+    'is_admin': int(input('Является админом? (1/0)')),
+    'is_active': int(input('Является активным пользователем? (1/0)')),
+    'has_permissio': int(input('Имеет разрешение? (1/0)')),
+    'is_blocked': int(input('Заблокирован? (1/0)')),
 }
 is_allowed = False
 
