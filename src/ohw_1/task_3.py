@@ -1,15 +1,15 @@
-month = int(input("Введите число: "))
+month = int(input('Введите число: '))
 
 match month:
     case month if month < 1:
-        print("Значение слишком маленькое")
+        print('Значение слишком маленькое')
     case 12 | 1 | 2:
-        print("Зима")
+        print('Зима')
     case 3 | 4 | 5:
-        print("Весна")
+        print('Весна')
     case 6 | 7 | 8:
-        print("Лето")
+        print('Лето')
     case 9 | 10 | 11:
-        print("Осень")
+        print('Осень')
     case _:
-        print("Значение слишком большое")
+        print('Значение слишком большое')

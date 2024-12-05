@@ -1,13 +1,13 @@
-num = int(input("Введите число: "))
+num = int(input('Введите число: '))
 
 match num:
     case 1:
-        print("Зима")
+        print('Зима')
     case 2:
-        print("Весна")
+        print('Весна')
     case 3:
-        print("Лето")
+        print('Лето')
     case 4:
-        print("Осень")
+        print('Осень')
     case _:
-        print("Нет такой поры года")
+        print('Нет такой поры года')
