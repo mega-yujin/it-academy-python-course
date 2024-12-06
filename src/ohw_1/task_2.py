@@ -13,4 +13,3 @@ elif num == 4:
     print(result)
 else:
     print('Нет такой поры года')
-    
