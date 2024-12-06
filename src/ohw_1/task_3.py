@@ -1,16 +1,14 @@
-month = int(input("Введите число: "))
+month = int(input('Введите число: '))
 
 if month < 1:
-    print("значение слишком маленькое")
+    print('значение слишком маленькое')
 elif 0 < month < 4:
-    print("Зима")
+    print('Зима')
 elif 3 < month < 7:
-    print("Весна")
+    print('Весна')
 elif 6 < month < 10:
-    print("Лето")
+    print('Лето')
 elif 9 < month < 13:
-    print("Осень")
+    print('Осень')
 elif month > 12:
-    print("значение слишком большое")
-
-
+    print('значение слишком большое')
