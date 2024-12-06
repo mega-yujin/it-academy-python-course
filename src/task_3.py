@@ -1,4 +1,4 @@
-month = int(input("Введите число: "))
+month = int(input('Введите число: '))
 if month < 1:
     print('значение слишком маленькое')
 elif 1 <= month <= 2 or month == 12:

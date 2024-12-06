@@ -1,4 +1,4 @@
-num = int(input("Введите число: "))
+num = int(input('Введите число: '))
 if num == 1:
     print('Зима')
 elif num == 2:
