@@ -1,5 +1,5 @@
-key = int(input("Введите число: "))
+key = int(input('Введите число: '))
 if key == 10:
-    print("Верно")
+    print('Верно')
 else:
-    print("Неверно")
+    print('Неверно')
