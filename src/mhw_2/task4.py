@@ -12,4 +12,3 @@ for i in new_string:
 upper_num = len(new_string) - lower_num
 
 print('Есть {0} строчных букв и {1} прописных'.format(lower_num, upper_num))
-
