@@ -6,8 +6,8 @@
 some_string = input('Введите строку: ').replace(' ', '')
 modified_string_list = []
 
-for i in some_string:
-    if i not in modified_string_list:
-        modified_string_list.append(i)
+for letter in some_string:
+    if letter not in modified_string_list:
+        modified_string_list.append(letter)
 
 print(''.join(modified_string_list))

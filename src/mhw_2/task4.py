@@ -5,9 +5,11 @@
 some_string = input('Введите строку: ')
 lower_num = 0
 
-new_string = ''.join([i for i in some_string if i.isalpha() and i.isascii()])
-for i in new_string:
-    if i.islower():
+new_string = ''.join(
+    [letter for letter in some_string if letter.isalpha() and letter.isascii()]
+)
+for letter in new_string:
+    if letter.islower():
         lower_num += 1
 upper_num = len(new_string) - lower_num
 

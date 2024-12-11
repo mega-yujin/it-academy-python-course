@@ -2,17 +2,17 @@
 Учтите что в предложении есть знаки препинания.
 """
 
-punctuation = r',.!?;:'
+punctuation = r',.!?;:-"'
 some_string = input('Введите строку: ')
 longest_words = ['']
 word_length = 0
 
-for i in punctuation:
-    some_string = some_string.replace(i, '')
+for mark in punctuation:
+    some_string = some_string.replace(mark, '')
 word_list = some_string.split()
-for i in word_list:
-    if len(i) >= len(longest_words[0]):
-        if len(i) > len(longest_words[0]):
+for word in word_list:
+    if len(word) >= len(longest_words[0]):
+        if len(word) > len(longest_words[0]):
             longest_words = []
-        longest_words.append(i)
+        longest_words.append(word)
 print('Самые длинные слова: {0}'.format(longest_words))
