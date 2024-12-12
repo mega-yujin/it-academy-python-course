@@ -6,11 +6,18 @@ The number 14 is not ugly because in its prime factor the 7 will come.
 Write a program to find and print the N’th ugly number."""
 
 
-def ugly_number(n: int) -> int:
-    number = [0] * n
+def ugly_number(num: int) -> int:
+    """
+    Find the wanted ugly number
+    :param num: int: wanted number number
+    :return: int: wanted number
+    """
+    number = [0 for _ in range(num)]
     number[0] = 1
 
-    i2 = i3 = i5 = 0
+    i2 = 0
+    i3 = 0
+    i5 = 0
     multiple_of2 = 2
     multiple_of3 = 3
     multiple_of5 = 5
@@ -36,5 +43,5 @@ def ugly_number(n: int) -> int:
     return number[-1]
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     print(ugly_number(int(input('Enter a number: '))))

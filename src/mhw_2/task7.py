@@ -8,6 +8,11 @@ import math
 
 
 def triangle_inequality_theorem(sides: tuple[int, int, int]) -> bool:
+    """
+    Determines if a triangle is possible
+    :param sides: tuple[int, int, int]: Sides of triangle
+    :return: bool: Answer
+    """
     return (
         sides[0] + sides[1] > sides[2] and
         sides[0] + sides[2] > sides[1] and
@@ -16,9 +21,15 @@ def triangle_inequality_theorem(sides: tuple[int, int, int]) -> bool:
 
 
 def area_of_triangle_sides(sides: tuple[int, int, int]) -> float:
-    semi_perimeter = (sides[0] + sides[1] + sides[2])/2
+    """
+    Finds area of the triangle given its sides
+    :param sides: tuple[int, int, int]: Sides of triangle
+    :return: Area of triangle
+    """
+    semi_perimeter = (sides[0] + sides[1] + sides[2]) / 2
     return math.sqrt(
-        semi_perimeter * (semi_perimeter - sides[0]) *
+        semi_perimeter *
+        (semi_perimeter - sides[0]) *
         (semi_perimeter - sides[1]) *
         (semi_perimeter - sides[2])
     )

@@ -2,7 +2,7 @@
 Учтите что в предложении есть знаки препинания.
 """
 
-punctuation = r',.!?;:-"'
+punctuation = ',.!?;:-"'
 some_string = input('Введите строку: ')
 longest_words = ['']
 word_length = 0

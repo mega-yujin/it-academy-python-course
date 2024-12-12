@@ -1,4 +1,4 @@
-"""Определите, является ли число палиндромом
+"""Определите, является ли число палиндромом.
 (читается слева направо и справа налево одинаково).
 Число положительное целое, произвольной длины.
 Задача требует работать только с числами
@@ -7,6 +7,11 @@
 
 
 def find_palindrome(number: int) -> bool:
+    """
+    Determines if a number is a palindrome
+    :param number: int: The number
+    :return: bool: Answer
+    """
     non_reversed_number = number
     reversed_number = 0
 

@@ -6,10 +6,16 @@ If a bracket is open, then it must be closed with a bracket of the same type.
 The scope of a bracket must not be intersected by another bracket.
 In this task you should make a decision,
 whether to correct an expression or not based on the brackets.
-Do not worry about operators and operands"""
+Do not worry about operators and operands
+"""
 
 
 def checkio(expression: str) -> bool:
+    """
+    Checks if brackets are placed correctly in expression
+    :param expression: str: Expression to check
+    :return: bool: True if correct
+    """
     stack = []
     bracket_pairs = {')': '(', '}': '{', ']': '['}
 
