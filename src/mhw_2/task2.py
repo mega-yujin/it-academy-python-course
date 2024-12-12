@@ -15,4 +15,4 @@ for word in word_list:
         if len(word) > len(longest_words[0]):
             longest_words = []
         longest_words.append(word)
-print('Самые длинные слова: {0}'.format(longest_words))
+print('Самые длинные слова: {0}'.format(', '.join(longest_words)))
