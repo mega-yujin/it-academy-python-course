@@ -3,7 +3,8 @@ The sequence 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, ...
 shows the first 11 ugly numbers. By convention, 1 is included.
 The numbers 7, 11, 13 are not ugly because they are prime.
 The number 14 is not ugly because in its prime factor the 7 will come.
-Write a program to find and print the N’th ugly number."""
+Write a program to find and print the N’th ugly number.
+"""
 
 
 def ugly_number(num: int) -> int:

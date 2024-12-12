@@ -14,8 +14,6 @@ def find_fibonacci(number: int) -> int:
     Returns:
         int: The nth Fibonacci number.
     """
-    if number <= 0:
-        raise ValueError("Number must be a positive integer.")
     if number == 1:
         return 0
     if number == 2:

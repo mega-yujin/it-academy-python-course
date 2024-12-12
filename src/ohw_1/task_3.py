@@ -6,16 +6,15 @@ seasons = {
 }
 month = int(input('Введите число: '))
 
-match month:
-    case m if m < 1:
-        print('Значение слишком маленькое')
-    case m if m in seasons['winter']:
-        print('Зима')
-    case m if m in seasons['spring']:
-        print('Весна')
-    case m if m in seasons['summer']:
-        print('Лето')
-    case m if m in seasons['fall']:
-        print('Осень')
-    case _:
-        print('Значение слишком большое')
+if month < 1:
+    print('Значение слишком маленькое')
+if month in seasons['winter']:
+    print('Зима')
+if month in seasons['spring']:
+    print('Весна')
+if month in seasons['summer']:
+    print('Лето')
+if month in seasons['fall']:
+    print('Осень')
+if month > 12:
+    print('Значение слишком большое')

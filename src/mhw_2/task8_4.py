@@ -12,7 +12,7 @@ def all_the_same(elements: list[any]) -> bool:
         elements (List[Tuple[int, int]]): Coordinates of the tops of the triangles.
 
     Returns:
-        int: Total area of the triangles, counting overlapping areas only once.
+        bool: True if uniform.
     """
     if len(set(elements)) <= 1:
         return True
