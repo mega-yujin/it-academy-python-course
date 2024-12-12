@@ -10,7 +10,7 @@ Do not worry about operators and operands
 """
 
 
-def checkio(expression: str) -> bool:
+def checkio(expression: str) -> bool:  # noqa: WPS231
     """
     Check if brackets are placed correctly in the expression.
 
