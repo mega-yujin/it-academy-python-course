@@ -17,7 +17,7 @@ def ugly_number(num: int) -> int:
     Returns:
         int: The Nth ugly number.
     """
-    ugly_numbers = [0] * num
+    ugly_numbers = [0 for _ in range(num)]
     ugly_numbers[0] = 1
 
     i2 = 0
