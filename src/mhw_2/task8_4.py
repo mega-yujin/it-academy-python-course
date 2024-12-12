@@ -3,20 +3,17 @@ In this mission you should check if all
 elements in the given sequence are equal.
 """
 
-from typing import List, Any
 
-
-def all_the_same(elements: List[Any]) -> bool:
+def all_the_same(elements: list[any]) -> bool:
     """
-    Checks if all elements in list are the same
-    :param elements:
-    :return:
-    """
-    # your code here
-    if not elements:
-        return True
-    if len(set(elements)) == 1:
-        return True
-    else:
-        return False
+    Calculate the total area of potentially overlapping triangles.
 
+    Args:
+        elements (List[Tuple[int, int]]): Coordinates of the tops of the triangles.
+
+    Returns:
+        int: Total area of the triangles, counting overlapping areas only once.
+    """
+    if len(set(elements)) <= 1:
+        return True
+    return False

@@ -7,9 +7,13 @@ It can be the only one.
 
 def most_frequent(data: list[str]) -> str:
     """
-    Finds the most frequent character of list
-    :param data: list[str]: original list
-    :return: str: the most repeated
+    Find the most frequent string in the list.
+
+    Args:
+        data (list[str]): The original list of strings.
+
+    Returns:
+        str: The most frequently occurring string.
     """
     data_set = set(data)
     answer = ''
@@ -19,4 +23,3 @@ def most_frequent(data: list[str]) -> str:
             value = data.count(element)
             answer = element
     return answer
-

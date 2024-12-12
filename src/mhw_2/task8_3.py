@@ -7,9 +7,13 @@ But count the overlapping areas only once.
 
 def mountain_scape(tops: list[tuple[int, int]]) -> int:
     """
-    Finds area of potentially overlapped triangles
-    :param tops: List[tuple[int, int]]: coordinates of tops of triangles
-    :return: int: Area
+    Calculate the total area of potentially overlapping triangles.
+
+    Args:
+        tops (List[Tuple[int, int]]): Coordinates of the tops of the triangles.
+
+    Returns:
+        int: Total area of the triangles, counting overlapping areas only once.
     """
     triangles = []
     cache = tops[:]
@@ -21,7 +25,7 @@ def mountain_scape(tops: list[tuple[int, int]]) -> int:
         if triangle in triangles:
             continue
         triangles.append(triangle)
-        if not y - 1:
+        if not ycoord - 1:
             continue
         triangles.append((left, right, (xcoord, ycoord - 2)))
         cache.extend([left, right])

@@ -8,39 +8,40 @@ Write a program to find and print the N’th ugly number."""
 
 def ugly_number(num: int) -> int:
     """
-    Find the wanted ugly number
-    :param num: int: wanted number number
-    :return: int: wanted number
+    Find the Nth ugly number.
+
+    Args:
+        num (int): The position of the wanted ugly number.
+
+    Returns:
+        int: The Nth ugly number.
     """
-    number = [0 for _ in range(num)]
-    number[0] = 1
+    ugly_numbers = [0] * num
+    ugly_numbers[0] = 1
 
     i2 = 0
     i3 = 0
     i5 = 0
-    multiple_of2 = 2
-    multiple_of3 = 3
-    multiple_of5 = 5
+    multiple_of_2 = 2
+    multiple_of_3 = 3
+    multiple_of_5 = 5
 
-    for index in range(1, n):
-        # Chooses the minimal multiple
-        number[index] = min(
-            multiple_of2,
-            multiple_of3,
-            multiple_of5,
-        )
-        # Calculates the next multiple of the current minimal
-        if number[index] == multiple_of2:
-            # Serves to avoid multiplying wrong number e.g. 7
+    for index in range(1, num):
+        # Choose the minimum of the multiples
+        next_ugly_number = min(multiple_of_2, multiple_of_3, multiple_of_5)
+        ugly_numbers[index] = next_ugly_number
+
+        if next_ugly_number == multiple_of_2:
             i2 += 1
-            multiple_of2 = number[i2] * 2
-        if number[index] == multiple_of3:
+            multiple_of_2 = ugly_numbers[i2] * 2
+        if next_ugly_number == multiple_of_3:
             i3 += 1
-            multiple_of3 = number[i3] * 3
-        if number[index] == multiple_of5:
+            multiple_of_3 = ugly_numbers[i3] * 3
+        if next_ugly_number == multiple_of_5:
             i5 += 1
-            multiple_of5 = number[i5] * 5
-    return number[-1]
+            multiple_of_5 = ugly_numbers[i5] * 5
+
+    return ugly_numbers[-1]
 
 
 if __name__ == '__main__':

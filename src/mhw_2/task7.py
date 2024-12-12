@@ -5,33 +5,42 @@
 """
 
 import math
+from typing import Tuple
 
 
-def triangle_inequality_theorem(sides: tuple[int, int, int]) -> bool:
+def triangle_inequality_theorem(sides: Tuple[int, int, int]) -> bool:
     """
-    Determines if a triangle is possible
-    :param sides: tuple[int, int, int]: Sides of triangle
-    :return: bool: Answer
+    Determine if three sides can form a triangle.
+
+    Args:
+        sides (Tuple[int, int, int]): Sides of the triangle.
+
+    Returns:
+        bool: True if the sides can form a triangle, False otherwise.
     """
     return (
-        sides[0] + sides[1] > sides[2] and
-        sides[0] + sides[2] > sides[1] and
-        sides[1] + sides[2] > sides[0]
+        sides[0] + sides[1] > sides[2]
+        and sides[0] + sides[2] > sides[1]
+        and sides[1] + sides[2] > sides[0]
     )
 
 
-def area_of_triangle_sides(sides: tuple[int, int, int]) -> float:
+def area_of_triangle_sides(sides: Tuple[int, int, int]) -> float:
     """
-    Finds area of the triangle given its sides
-    :param sides: tuple[int, int, int]: Sides of triangle
-    :return: Area of triangle
+    Calculate the area of a triangle given its sides.
+
+    Args:
+        sides (Tuple[int, int, int]): Sides of the triangle.
+
+    Returns:
+        float: The area of the triangle.
     """
     semi_perimeter = (sides[0] + sides[1] + sides[2]) / 2
     return math.sqrt(
-        semi_perimeter *
-        (semi_perimeter - sides[0]) *
-        (semi_perimeter - sides[1]) *
-        (semi_perimeter - sides[2])
+        semi_perimeter
+        * (semi_perimeter - sides[0])
+        * (semi_perimeter - sides[1])
+        * (semi_perimeter - sides[2])
     )
 
 

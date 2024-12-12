@@ -12,9 +12,13 @@ Do not worry about operators and operands
 
 def checkio(expression: str) -> bool:
     """
-    Checks if brackets are placed correctly in expression
-    :param expression: str: Expression to check
-    :return: bool: True if correct
+    Check if brackets are placed correctly in the expression.
+
+    Args:
+        expression (str): Expression to check.
+
+    Returns:
+        bool: True if the brackets are placed correctly, False otherwise.
     """
     stack = []
     bracket_pairs = {')': '(', '}': '{', ']': '['}
@@ -28,7 +32,7 @@ def checkio(expression: str) -> bool:
             else:
                 return False
 
-    return len(stack) == 0
+    return not stack
 
 
 print(checkio(input('Введите строку: ')))
