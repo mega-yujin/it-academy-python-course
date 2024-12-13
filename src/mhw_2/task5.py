@@ -10,7 +10,7 @@ if number == 1:
     print(0)
     SystemExit()
 else:
-    for ind in range(0, number - 2):
+    for _ in range(0, number - 2):
         summ = first + two
         first = two
         two = summ
