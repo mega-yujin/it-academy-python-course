@@ -6,9 +6,8 @@ string = input('Введите строку ')
 lower = 0
 upper = 0
 for char in string:
-    if char.isalpha():
-        if char.islower():
-            lower += 1
-        else:
-            upper += 1
+    if 'a' <= char <= 'z':
+        lower += 1
+    elif 'A' <= char <= 'Z':
+        upper += 1
 print(f'Количество строчных (маленьких) букв: {lower}, количество прописных (больших) букв: {upper}')
