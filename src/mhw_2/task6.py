@@ -13,7 +13,7 @@ while number_1 > 0:
     some_number = number_1 % 10
     number_1 = number_1 // 10
     number_2 = number_2 * 10 + some_number
-    
+
 if number_2 == start_number:
     print(True)
 else:
