@@ -6,10 +6,10 @@
 string = input('Введите строку: ')
 big = 0
 small = 0
-for i in string:
-    if 'a' <= i <= 'z':
+for ind in string:
+    if 'a' <= ind <= 'z':
         small += 1
-    elif 'A' <= i <= 'Z':
+    elif 'A' <= ind <= 'Z':
         big += 1
 print('Больших: ', big)
 print('Маленьких: ', small)

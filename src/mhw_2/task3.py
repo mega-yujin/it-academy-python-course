@@ -6,7 +6,7 @@
 string = input('Введите строку: ')
 no_space = string.replace(' ', '')
 res_string = ''
-for i in no_space:
-    if i not in res_string:
-        res_string += i
+for ind in no_space:
+    if ind not in res_string:
+        res_string += ind
 print(res_string)
