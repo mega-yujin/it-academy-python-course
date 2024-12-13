@@ -1,5 +1,5 @@
 """
-Simple
+Simple.
 Pawn Brotherhood
 You are given a set of square coordinates where we have placed white pawns.
 You should count how many pawns are safe.
@@ -19,5 +19,5 @@ def safe_pawns(pawns: set) -> int:
     return safe_count
 
 
-print("Example:")
-print(safe_pawns({"b4", "d4", "f4", "c3", "e3", "g5", "d2"}))
+print('Example:')
+print(safe_pawns({'b4', 'd4', 'f4', 'c3', 'e3', 'g5', 'd2'}))
