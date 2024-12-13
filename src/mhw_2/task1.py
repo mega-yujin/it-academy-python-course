@@ -10,6 +10,6 @@ rub = int(input('Введите стоимость в рублях:'))
 kop = int(input('Введите стоимость в копейках:'))
 kol = int(input('Введите количество товара:'))
 result: float = (kop / 100 + rub) * kol
-v_rub = int(result // 1)
-v_kop = round(result % 1 * 100)
+v_rub = int(result // 1)  # noqa: WPS345
+v_kop = round(result % 1 * 100)  # noqa: WPS345
 print('Стоимость ', kol, ' товаров равна: ', v_rub, ' рублей ', v_kop, ' копеек.')
