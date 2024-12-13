@@ -3,14 +3,14 @@
 Только циклические операторы и условные операторы. n - вводится
 """
 
-n = int(input('Введите n-ое число Фибоначчи: '))
+number = int(input('Введите n-ое число Фибоначчи: '))
 first = 0
 two = 1
-if n == 1:
+if number == 1:
     print(0)
     SystemExit()
 else:
-    for ind in range(0, n - 2):
+    for ind in range(0, number - 2):
         summ = first + two
         first = two
         two = summ
