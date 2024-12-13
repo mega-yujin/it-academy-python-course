@@ -4,7 +4,7 @@ lower = 0
 upper = 0
 
 for char in input_string:
-    if char.isalpha():
+    if char.isalpha() and char.isascii():
         if char.islower():
             lower += 1
         elif char.isupper():
