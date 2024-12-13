@@ -1,26 +1,3 @@
-"""from time import perf_counter
-
-
-iterator = range(10000000)
-start_time = perf_counter()
-
-result = []
-
-for i in range(10000000):
-    if i %2:
-        result.append(i)
-
-end_time = perf_counter()
-
-print(end_time - start_time)
-
-start_time = perf_counter()
-comp_result = [i for i in iterator if not i %2]
-end_time = perf_counter()
-
-print(end_time - start_time)
-"""
-
 team_info = {
     "squad_name": "Super hero squad",
     "home_town": "Metro City",
@@ -66,8 +43,18 @@ team_info = {
         },
     ]
 }
-members = team_info['members']
 
-name_superhero = [hero['name'] for hero in team_info['members']] 
-print(name_superhero)
+#unique_abilities = {power for member in team_info['members'] for power in member['powers']}
+#print(unique_abilities)
+
+"""for member in team_info['members']:
+    for power in members['powers']:
+        unique_abilities.add(power)
+        print(unique_abilities)
+"""
+
+hero = {info['name'] :info['powers'] for info in team_info['members']}
+
+print(hero)
+
 
