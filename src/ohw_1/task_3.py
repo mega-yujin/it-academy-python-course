@@ -1,6 +1,6 @@
 month = int(input('Введите число: '))
 
-if month < 1:
+if month < 1:  # noqa: C901 WPS223
     print('значение слишком маленькое')
 elif 0 < month < 4:
     print('Зима')
