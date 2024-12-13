@@ -4,16 +4,16 @@
 Если нет, вывести сообщение о неверных данных.
 """
 
+import math
+
 st_1 = int(input('Длина первой стороны: '))
 st_2 = int(input('Длина второй стороны: '))
 st_3 = int(input('Длина третьей стороны: '))
 
-import math
-
 if st_1 < st_2 + st_3 and st_2 < st_1 + st_3 and st_3 < st_1 + st_2:
-    p_per = (st_1 + st_2 + st_3)/2
-    poluformula = p_per*(p_per-st_1)*(p_per-st_2)*(p_per-st_3)
+    p_per = (st_1 + st_2 + st_3) / 2
+    poluformula = p_per * (p_per - st_1) * (p_per - st_2) * (p_per - st_3)
     square = math.sqrt(poluformula)
-    print('Его площадь: ' , square)
+    print('Его площадь: ', square)
 else:
     print('Это не треугольник!')

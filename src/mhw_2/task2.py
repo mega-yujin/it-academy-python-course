@@ -8,7 +8,7 @@ len(list) - количество элементов в списке
 string = input('Введите предложение: ')
 deleted_symbol = ',.?:-"'
 for i in deleted_symbol:
-    string = string.replace(i,'')
+    string = string.replace(i, '')
 
 words = string.split()
 

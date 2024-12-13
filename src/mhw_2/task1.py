@@ -12,4 +12,4 @@ kol = int(input('Введите количество товара:'))
 result: float = (kop / 100 + rub) * kol
 v_rub = int(result // 1)
 v_kop = round(result % 1 * 100)
-print('Стоимость ', kol , ' товаров равна: ' , v_rub, ' рублей ' , v_kop, ' копеек.' )
+print('Стоимость ' , kol , ' товаров равна: ' , v_rub , ' рублей ' , v_kop , ' копеек.')
