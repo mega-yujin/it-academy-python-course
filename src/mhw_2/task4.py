@@ -11,5 +11,5 @@ for i in string:
         small += 1
     elif 'A' <= i <= 'Z':
         big += 1
-print('Больших: ' , big)
-print('Маленьких: ' , small)
+print('Больших: ', big)
+print('Маленьких: ', small)

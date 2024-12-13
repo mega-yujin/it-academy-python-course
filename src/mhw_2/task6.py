@@ -5,7 +5,7 @@
 
 """
 
-start_number = int(input("Введите целое число: "))
+start_number = int(input('Введите целое число: '))
 number_1 = start_number
 number_2 = 0
 
