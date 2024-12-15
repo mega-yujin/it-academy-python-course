@@ -32,7 +32,7 @@ def ugly_number(num: int) -> int:
         next_ugly_number = min(multiple_of_2, multiple_of_3, multiple_of_5)
         ugly_numbers[index] = next_ugly_number
 
-        if next_ugly_number == multiple_of_2:
+        if next_ugly_number == multiple_of_2 :
             i2 += 1
             multiple_of_2 = ugly_numbers[i2] * 2
         if next_ugly_number == multiple_of_3:
