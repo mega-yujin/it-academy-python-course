@@ -5,13 +5,18 @@
 """
 
 
-def fizzbuzz() -> str:
-    return '\n'.join([
+def fizzbuzz():
+    """
+    Print number from 1 to 100, if number divisible by 3 print
+    'Fizz', if by 5 print 'Buzz', if by 3 and 5 print 'FizzBuzz'.
+    """
+    print('\n'.join([
         'FizzBuzz' if not num % 3 and not num % 5 else
         'Fizz' if not num % 3 else
         'Buzz' if not num % 5 else
         str(num) for num in range(1, 101)
-    ])
+    ]))
 
 
-print(fizzbuzz())
+if __name__ == '__main__':
+    fizzbuzz()
