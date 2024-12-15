@@ -11,10 +11,9 @@
 так чтобы в исходном списке этого элемента не было.
 """
 
+some_list1 = [char_1 + char_2 for char_1 in 'ab' for char_2 in 'bcd']
 
-some_list = [char_1 + char_2 for char_1 in 'ab' for char_2 in 'bcd']
-
-some_list2 = some_list
+some_list2 = some_list1
 some_list2 = some_list2[slice(0, 6, 2)]
 
 some_list3 = [str(num) + 'a' for num in range(1, 5)]
