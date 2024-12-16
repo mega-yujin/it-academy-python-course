@@ -7,6 +7,16 @@ You should count how many pawns are safe.
 
 
 def safe_pawns(pawns: set) -> int:
+    """
+    Count how many pawns are safe.
+
+
+    Args:
+        pawns (set): A set of coordinates representing the positions of white pawns.
+
+    Returns:
+        int: The number of safe pawns.
+    """
     safe_count = 0
     for pawn in pawns:
         column, row = pawn[0], int(pawn[1])

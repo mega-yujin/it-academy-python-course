@@ -6,11 +6,22 @@
 side_one = int(input('Введите длину первой стороны: '))
 side_two = int(input('Введите длину второй стороны: '))
 side_three = int(input('Введите длину третьей стороны: '))
-if ((side_one + side_two) > side_three and (side_two + side_three) > side_one and
-    (side_one + side_three) > side_two):
+
+is_triangle = (
+    side_one + side_two > side_three
+    and side_two + side_three > side_one
+    and side_one + side_three > side_two
+)
+
+if is_triangle:
     half_perimeter = (side_one + side_two + side_three) / 2
-    square = (half_perimeter * (half_perimeter - side_one) *
-    (half_perimeter - side_two) * (half_perimeter - side_three)) ** 0.5
+    square = (
+        (half_perimeter
+         * (half_perimeter - side_one)
+         * (half_perimeter - side_two)
+         * (half_perimeter - side_three)
+         ) ** 0.5
+    )
     print(f'Площадь треугольника равна {square}')
 else:
     print('Данного треугольника не существует')
