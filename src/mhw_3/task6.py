@@ -14,9 +14,6 @@ def sorted_list(seq: list):
 
     Args:
         seq (list): List to sort.
-
-    Returns:
-        Print sorted list.
     """
     sorted_seq = list(map(int, seq[:]))
     for ind in range(len(sorted_seq)):
@@ -35,9 +32,6 @@ def sorted_list2(seq2: list):
 
     Args:
         seq2 (list): List to sort.
-
-    Returns:
-        Print sorted list.
     """
     sorted_seq2 = list(map(int, seq2[:]))
     non_zero_ind = 0
