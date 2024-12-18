@@ -8,7 +8,7 @@
 """
 
 
-def element_pairs(seq: str) -> dict[str, int]:
+def element_pairs(seq: str) -> str:
     """
     Count number of pairs element of sequence has.
 
@@ -16,8 +16,7 @@ def element_pairs(seq: str) -> dict[str, int]:
         seq (str): Sequence to check.
 
     Return:
-        dict[str, int]: Dictionary, key - element of sequence,
-        value - number of pairs.
+        str: element and number of pairs.
     """
     seq_set = set(seq.split())
     elements_amount = [seq.split().count(element) for element in seq_set]
@@ -25,7 +24,11 @@ def element_pairs(seq: str) -> dict[str, int]:
     for ind, num in enumerate(elements_amount):
         for count in range(num):
             num_pairs[ind] += count
-    return dict(zip(seq_set, num_pairs))
+    answer_list = [
+        '{0}: {1}'. format(key, value) for
+        key, value in zip(seq_set, num_pairs)
+    ]
+    return ', '.join(answer_list)
 
 
 print(element_pairs(input('Введите последовательность: ')))
