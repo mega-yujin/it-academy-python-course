@@ -9,7 +9,7 @@
 
 some_tuple1 = tuple(['a', 'b', 'c'])  # noqa: C409
 
-some_list1 = list(('a', 'b', 'c'))  # noqa: C409
+some_list1 = list(('a', 'b', 'c'))  # noqa: C410
 
 a, b, c = 'a', 2, 'python'  # noqa: WPS111
 
