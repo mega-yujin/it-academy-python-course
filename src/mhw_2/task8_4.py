@@ -6,10 +6,10 @@ elements in the given sequence are equal.
 
 def all_the_same(elements: list[any]) -> bool:
     """
-    Calculate the total area of potentially overlapping triangles.
+    Check if all elements in a sequence are equal.
 
     Args:
-        elements (List[Tuple[int, int]]): Coordinates of the tops of the triangles.
+        elements (list[any]): Sequence to check.
 
     Returns:
         bool: True if uniform.
