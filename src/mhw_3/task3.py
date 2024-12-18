@@ -7,10 +7,10 @@
 Убедитесь что len() исходного кортежа возвращает 1.
 """
 
-some_tuple1 = tuple(['a', 'b', 'c'])
+some_tuple1 = tuple(['a', 'b', 'c'])  # noqa: C409
 
-some_list1 = list(('a', 'b', 'c'))
+some_list1 = list(('a', 'b', 'c'))  # noqa: C409
 
-a, b, c = 'a', 2, 'python'
+a, b, c = 'a', 2, 'python'  # noqa: WPS111
 
 some_tuple2 = ([(1, 2, 3)])
