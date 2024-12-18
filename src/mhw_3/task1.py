@@ -7,15 +7,20 @@
 
 def fizzbuzz():
     """
-    Print number from 1 to 100, if number divisible by 3 print
-    'Fizz', if by 5 print 'Buzz', if by 3 and 5 print 'FizzBuzz'.
+    Print numbers from 1 to 100. If a number is divisible by 3, print 'Fizz'.
+    If divisible by 5, print 'Buzz'. If divisible by both 3 and 5, print 'FizzBuzz'.
     """
-    print('\n'.join([
-        'FizzBuzz' if not num % 3 and not num % 5 else
-        'Fizz' if not num % 3 else
-        'Buzz' if not num % 5 else
-        str(num) for num in range(1, 101)
-    ]))
+    result = []
+    for num in range(1, 101):
+        if num % 3 == 0 and num % 5 == 0:
+            result.append('FizzBuzz')
+        elif num % 3 == 0:
+            result.append('Fizz')
+        elif num % 5 == 0:
+            result.append('Buzz')
+        else:
+            result.append(str(num))
+    print('\n'.join(result))
 
 
 if __name__ == '__main__':

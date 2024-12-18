@@ -15,7 +15,7 @@ def element_pairs(seq: str) -> str:
     Args:
         seq (str): Sequence to check.
 
-    Return:
+    Returns:
         str: element and number of pairs.
     """
     seq_set = set(seq.split())
@@ -29,8 +29,7 @@ def element_pairs(seq: str) -> str:
 
     # Reformat answer to ['element: number']
     answer_list = [
-        '{0}: {1}'. format(key, value) for
-        key, value in zip(seq_set, num_pairs)
+        f'{key}: {value}' for key, value in zip(seq_set, num_pairs)
     ]
     return ', '.join(answer_list)
 

@@ -16,7 +16,7 @@ some_list1 = [char_1 + char_2 for char_1 in 'ab' for char_2 in 'bcd']
 some_list2 = some_list1
 some_list2 = some_list2[slice(0, 6, 2)]
 
-some_list3 = [str(num) + 'a' for num in range(1, 5)]
+some_list3 = [f'{num}a' for num in range(1, 5)]
 
 some_list4 = some_list3[:]
 some_list4.remove('2a')

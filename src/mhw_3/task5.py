@@ -8,8 +8,12 @@
 def unique_elements(seq: list) -> list:
     """
     Return unique elements of list.
-    :param seq: List to format.
-    :return: Unique elements.
+
+    Args:
+        seq (list): List to format.
+
+    Returns:
+        list: Unique elements.
     """
     return [element for element in seq if seq.count(element) == 1]
 
