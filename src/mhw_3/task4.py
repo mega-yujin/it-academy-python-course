@@ -21,9 +21,13 @@ def element_pairs(seq: str) -> str:
     seq_set = set(seq.split())
     elements_amount = [seq.split().count(element) for element in seq_set]
     num_pairs = [0 for _ in range(len(elements_amount))]
+
+    # Find number of pairs by summing numbers up to zero
     for ind, num in enumerate(elements_amount):
         for count in range(num):
             num_pairs[ind] += count
+
+    # Reformat answer to ['element: number']
     answer_list = [
         '{0}: {1}'. format(key, value) for
         key, value in zip(seq_set, num_pairs)
