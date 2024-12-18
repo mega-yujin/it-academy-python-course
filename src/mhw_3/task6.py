@@ -23,7 +23,7 @@ def sorted_list(seq: list):
             sorted_seq.append(0)
             ind -= 1
 
-    return print(sorted_seq)
+    print(sorted_seq)
 
 
 def sorted_list2(seq2: list):
