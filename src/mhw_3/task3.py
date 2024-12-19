@@ -13,10 +13,10 @@ tuple_2 = ('a', 'b', 'c')
 list_2 = list(tuple_2)
 print(list_2)
 
-list_2[0], list_2[1], list_2[2] = 'a', 2, 'pythone'
+list_2 = 'a', 2, 'pythone'
 print(list_2)
 
 tuple_3 = ([1, 2, 3],)
 print(len(tuple_3))
-for i in tuple_3[0]:
-    print(i)
+for ind in tuple_3[0]:
+    print(ind)

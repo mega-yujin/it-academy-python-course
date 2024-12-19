@@ -8,11 +8,11 @@
 
 some_list = [first + two for first in 'ab' for two in 'bcd']
 
-some_list = some_list[0::2]
+some_list = some_list[::2]
 
 next_list = [number + lit for number in '1234' for lit in 'a']
 
 print(next_list.pop(1))
 
 final_list = next_list.copy()
-final_list.insert(1,'2a')
+final_list.insert(1, '2a')

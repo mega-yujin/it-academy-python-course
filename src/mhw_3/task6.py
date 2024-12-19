@@ -7,8 +7,8 @@
 
 numbers = [0, 1, 0, 45, 0, 2, -3, 0, 4, 0, -6]
 print(numbers)
-for i in numbers:
-    if i == 0:
-        numbers.append(i)
-        numbers.remove(i)
+for ind in numbers:
+    if ind == 0:
+        numbers.append(ind)
+        numbers.remove(ind)
 print(numbers)
