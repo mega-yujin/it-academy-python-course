@@ -6,10 +6,11 @@
 
 for number in range(1, 101):
     if number % 3 == 0 and number % 5 == 0:
-        number = 'FizzBuzz'
+        number = str('FizzBuzz')
     elif number % 5 == 0:
-        number = 'Buzz'
+        number = str('Buzz')
     elif number % 3 == 0:
-        number = 'Fizz'
-    else: None
+        number = str('Fizz')
+    else: 
+        None
     print(number)
