@@ -1,0 +1,22 @@
+"""
+5.
+Дан список.
+Выведите те его элементы, которые встречаются в списке только один раз.
+Элементы нужно выводить в том порядке, в котором они встречаются в списке.
+"""
+
+
+def unique_elements(elements: list):  # noqa: D103
+    counter = {}
+
+    for element in elements:
+        if element in counter:
+            counter[element] += 1  # noqa: WPS529
+        else:
+            counter[element] = 1  # noqa: WPS529
+
+    return [elem for elem in elements if counter[elem] == 1]
+
+
+elements = list(input('Введите элементы через пробел: ').split(' '))
+print(unique_elements(elements))
