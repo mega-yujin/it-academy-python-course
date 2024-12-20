@@ -16,13 +16,16 @@ def sorted_list(seq: list):
         seq (list): List to sort.
     """
     sorted_seq = list(map(int, seq[:]))
-    for ind in range(len(sorted_seq)):
+    ind = 0
+    length = len(sorted_seq)
+    while ind < length:
         if sorted_seq[ind] == 0:
             # Pop a zero and add a new one in front
             sorted_seq.pop(ind)
             sorted_seq.append(0)
-            ind -= 1
-
+            length -= 1
+        else:
+            ind += 1
     print(sorted_seq)
 
 

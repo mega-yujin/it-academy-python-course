@@ -18,8 +18,9 @@ def element_pairs(seq: str) -> str:
     Returns:
         str: element and number of pairs.
     """
-    seq_set = set(seq.split())
-    elements_amount = [seq.split().count(element) for element in seq_set]
+    split_seq = seq.split()
+    seq_set = set(split_seq)
+    elements_amount = [split_seq.count(element) for element in seq_set]
     num_pairs = [0 for _ in range(len(elements_amount))]
 
     # Find number of pairs by summing numbers up to zero

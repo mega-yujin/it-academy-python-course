@@ -18,9 +18,7 @@ some_list2 = some_list2[slice(0, 6, 2)]
 
 some_list3 = [f'{num}a' for num in range(1, 5)]
 
-some_list4 = some_list3[:]
-some_list4.remove('2a')
-print(some_list4)
+print((lambda lst: (lst.remove('2a'), lst)[1])(some_list3))
 
-some_list5 = some_list4[:]
+some_list5 = some_list3[:]
 some_list5.append('2a')
