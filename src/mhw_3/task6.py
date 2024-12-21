@@ -7,15 +7,16 @@
 """
 
 
-def sorting(numbers: list) -> list:  # noqa: D103
+def sorting(numbers: list) -> list:
+    """Return a sorted list."""
     number_index = 0
 
-    for index in range(len(numbers)):  # noqa: WPS518
-        if numbers[index] != 0:
-            numbers[number_index] = numbers[index]
+    for num in numbers:
+        if num != 0:
+            numbers[number_index] = num
             number_index += 1
 
-    for ind in range(number_index, len(numbers)):  # noqa: WPS518
+    for ind, _ in enumerate(numbers[number_index:], start=number_index):
         numbers[ind] = 0
 
     return numbers

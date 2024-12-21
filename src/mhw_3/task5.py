@@ -6,14 +6,15 @@
 """
 
 
-def unique_elements(elements: list):  # noqa: D103
+def unique_elements(elements: list):
+    """Return a list of elements that appear only once in the list."""
     counter = {}
 
     for element in elements:
         if element in counter:
-            counter[element] += 1  # noqa: WPS529
+            counter[element] += 1
         else:
-            counter[element] = 1  # noqa: WPS529
+            counter[element] = 1
 
     return [elem for elem in elements if counter[elem] == 1]
 

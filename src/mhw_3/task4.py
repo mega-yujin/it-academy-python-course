@@ -9,14 +9,15 @@
 """
 
 
-def count_pairs(numbers: list) -> int:  # noqa: D103
+def count_pairs(numbers: list) -> int:
+    """Return the number of pairs equal to each other."""
     count_dict = {}
 
     for number in numbers:
         if number in count_dict:
-            count_dict[number] += 1  # noqa: WPS529
+            count_dict[number] += 1
         else:
-            count_dict[number] = 1  # noqa: WPS529
+            count_dict[number] = 1
 
     pairs_count = 0
     for count in count_dict.values():
