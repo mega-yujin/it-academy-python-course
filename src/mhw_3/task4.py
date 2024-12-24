@@ -8,8 +8,8 @@
 
 entered_numbers = [int(numeral) for numeral in input().split()]
 pairs_number = 0
-for number in range(len(entered_numbers)):
-    for sum_number in range(number + 1, len(entered_numbers)):
+for number in range(len(entered_numbers)):  # noqa: WPS518
+    for sum_number in range(number + 1, len(entered_numbers)):  # noqa: WPS518
         if entered_numbers[number] == entered_numbers[sum_number]:
             pairs_number += 1
 print(pairs_number)
