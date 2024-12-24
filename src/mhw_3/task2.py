@@ -6,7 +6,7 @@
     Скопируйте список и добавьте в него элемент '2a' так, чтобы в исходном списке этого элемента не было.
 """
 
-generated_list = [first_letter + next_letter for first_letter in ['a', 'b'] for next_letter in ['b', 'c', 'd']]  # noqa WPS335
+generated_list = [first_letter + next_letter for first_letter in ['a', 'b'] for next_letter in ['b', 'c', 'd']]  # noqa: WPS335
 print(generated_list)
 slice_list = generated_list[::2]
 print(slice_list)
