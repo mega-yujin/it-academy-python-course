@@ -6,15 +6,12 @@
 """
 
 print('Введите стороны треугольника: ')
-first_side = int(input('a = '))
-second_side = int(input('b = '))
-third_side = int(input('c = '))
-if first_side + second_side > third_side and first_side + third_side > second_side and second_side + third_side > first_side:
-    semi_perimeter = (first_side + second_side + third_side) / 2
-    triangle_area = (
-                    (semi_perimeter * (semi_perimeter - first_side) *
-                        (semi_perimeter - second_side) *
-                        (semi_perimeter - third_side)) ** 0.5)
+side_one = int(input('a = '))
+side_two = int(input('b = '))
+side_three = int(input('c = '))
+if side_one + side_two > side_three and side_one + side_three > side_two and side_two + side_three > side_one:
+    semi_prim = (side_one + side_two + side_three) / 2
+    triangle_area = (semi_prim * (semi_prim - side_one) * (semi_prim - side_two) * (semi_prim - side_three)) ** 0.5
     triangle_area = round(triangle_area, 2)
     print(f'Площадь треугольника равна: "{triangle_area}"')
 else:
