@@ -6,7 +6,7 @@
     Важно: 1 1 1 - это 3 пары, 1 1 1 1 - это 6 пар
 """
 
-entered_numbers = [int(s) for s in input().split()]
+entered_numbers = [int(numeral) for numeral in input().split()]
 pairs_number = 0
 for number in range(len(entered_numbers)):
     for sum_number in range(number + 1, len(entered_numbers)):

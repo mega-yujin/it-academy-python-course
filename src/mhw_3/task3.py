@@ -11,8 +11,8 @@ some_list = ['a', 'b', 'c']
 some_tuple = tuple(some_list)
 some_next_tuple = ('a', 'b', 'c')
 some_next_list = list[some_next_tuple]
-a, b, c = 'a', 2, 'python'
-tuple_one_element = (1,)
-for tuple_one_elem in range(1, 4):
-    print(tuple_one_elem)
+a, b, c = 'a', 2, 'python'  # noqa WPS111
+tuple_one_element = (iter([1, 2, 3]),)
+for numbers in tuple_one_element[0]:
+    print(numbers)
 print(len(tuple_one_element))
