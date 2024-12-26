@@ -53,8 +53,8 @@ def cities2(data: dict[str, list[str]], num: int) -> str:
         f'{city_2}: {country_2}'
         for country_2, cities_2 in data.items()
         for city_2 in cities_2
-        ][:num],
-        )
+    ][:num],
+    )
 
 
 if __name__ == '__main__':

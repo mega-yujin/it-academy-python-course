@@ -1,4 +1,4 @@
-"""Языки.
+"""Languages.
 Каждый из N школьников некоторой школы знает M языков. Определите:
 1) какие языки знают все школьники и языки
 2) какие языки знает хотя бы один из школьников.
@@ -32,8 +32,10 @@ def languages():
             common_languages &= student_languages
 
     print(f'Все школьники знают хотя {len(common_languages)} язык(-а/ов)')
-    print(f'Хотя бы один из школьников знает 1 из ' +
-          f'{len(all_languages)} язык(-а/ов)')
+    print(
+        'Хотя бы один из школьников знает 1 из ' +
+        f'{len(all_languages)} язык(-а/ов)'
+    )
 
     for language in all_languages:
         print(language)

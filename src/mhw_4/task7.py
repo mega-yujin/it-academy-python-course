@@ -10,29 +10,28 @@
 
 
 def matrix_addition(
-    matrix1: list[list[int]],
-    matrix2: list[list[int]],
+    mtrx1: list[list[int]],
+    mtrx2: list[list[int]],
 ) -> list[list[int]]:
     """
     Sum two matrices.
 
     Args:
-        matrix1 (list[list[int]]): The first matrix.
-        matrix2 (list[list[int]]): The second matrix.
+        mtrx1 (list[list[int]]): The first matrix.
+        mtrx2 (list[list[int]]): The second matrix.
 
     Returns:
         list[list[int]]: The resulting matrix.
     """
     if (
-            len(matrix1) != len(matrix2) or any(
-                len(row1) != len(row2) for row1, row2 in zip(matrix1, matrix2)
-            )
+            len(mtrx1) != len(mtrx2)
+            or any(len(row1) != len(row2) for row1, row2 in zip(mtrx1, mtrx2))
     ):
         print('Matrices must have the same dimensions.')
 
     return [
         [elem1 + elem2 for elem1, elem2 in zip(row1, row2)]
-        for row1, row2 in zip(matrix1, matrix2)
+        for row1, row2 in zip(mtrx1, mtrx2)
     ]
 
 
