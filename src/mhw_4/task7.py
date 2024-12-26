@@ -23,10 +23,9 @@ def matrix_addition(
     Returns:
         list[list[int]]: The resulting matrix.
     """
-    if (
-            len(mtrx1) != len(mtrx2)
-            or any(len(row1) != len(row2) for row1, row2 in zip(mtrx1, mtrx2))
-    ):
+    if len(mtrx1) != len(mtrx2):
+        print('Matrices must have the same dimensions.')
+    if any(len(row1) != len(row2) for row1, row2 in zip(mtrx1, mtrx2)):
         print('Matrices must have the same dimensions.')
 
     return [
