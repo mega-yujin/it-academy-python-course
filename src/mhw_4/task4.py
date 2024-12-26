@@ -23,5 +23,5 @@ def unique2(seq1: list[int], seq2: list[int]) -> int:
 if __name__ == '__main__':
     print(unique2(
         [1, 2, 3, 4, 3, 5, 6, 7, 8],
-        [4, 6, 5, 7, 8, 9, 10, 11, 9, 12]
+        [4, 6, 5, 7, 8, 9, 10, 11, 9, 12],
     ))

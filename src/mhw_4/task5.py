@@ -9,23 +9,21 @@ def languages():
     """
     Input number of students, then for each one number of
     languages they know, then those languages.
-
-    Returns:
-        Print how many language know all students, what language
-        at least one of them knows.
+    Print how many language know all students, what language
+    at least one of them knows.
     """
     all_languages = set()
     common_languages = None
+    student_amount = int(input('Введите количество школьников: '))
 
-    for student in range(
-        int(input('Введите количество школьников: '))
-    ):
+    for student in range(student_amount):
         languages_num = int(input(
-            f'Введите количество языков для {student + 1}-го школьника: '
+            f'Введите количество языков для {student + 1}-го школьника: ',
         ))
         student_languages = {input(
-            f'Введите {language + 1}-й язык для {student + 1}-го школьника: '
-        ) for language in range(languages_num)}
+            f'Введите {language + 1}-й язык для {student + 1}-го школьника: ',
+        ) for language in range(languages_num)
+        }
 
         all_languages |= student_languages
         if common_languages is None:
@@ -34,8 +32,12 @@ def languages():
             common_languages &= student_languages
 
     print(f'Все школьники знают хотя {len(common_languages)} язык(-а/ов)')
-    print(f'Хотя бы один из школьников знает 1 из '
-          f'{len(all_languages)} язык(-а/ов)')
+    some_text = (
+        f'Хотя бы один из школьников знает 1 из '
+        f'{len(all_languages)} язык(-а/ов)'
+    )
+    print(some_text)
+
     for language in all_languages:
         print(language)
 

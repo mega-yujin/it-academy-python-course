@@ -27,15 +27,15 @@ def cities(data: dict[str, list[str]], num: int) -> str:
     Returns:
         Num cities and their countries.
     """
-    answer = ''
+    answer = []
     for country_1, cities_1 in data.items():
         for city_1 in cities_1:
-            if not num > 0:
-                return answer
-            answer += f'{city_1}: {country_1} \n'
+            if num <= 0:
+                return ''.join(answer)
+            answer.append(f'{city_1}: {country_1} \n')
             num -= 1
 
-    return answer
+    return ''.join(answer)
 
 
 def cities2(data: dict[str, list[str]], num: int) -> str:
@@ -49,21 +49,27 @@ def cities2(data: dict[str, list[str]], num: int) -> str:
     Returns:
         Num cities and their countries.
     """
-
-    return '\n'.join([f'{city_2}: {country_2}' for
-                      country_2, cities_2 in data.items() for
-                      city_2 in cities_2][:num])
+    return '\n'.join([
+                         f'{city_2}: {country_2}' for
+                         country_2, cities_2 in data.items()
+                         for city_2 in cities_2
+                     ][:num]
+                     )
 
 
 if __name__ == '__main__':
-    print(cities({
-        'Italy': ['Rome', 'Florence'],
-        'Russia': ['Moscow', 'Kursk', 'Vladivostok'],
-    }, 3
+    print(cities(
+        {
+            'Italy': ['Rome', 'Florence'],
+            'Russia': ['Moscow', 'Kursk', 'Vladivostok'],
+         },
+        3,
     ))
 
-    print(cities2({
-        'Italy': ['Rome', 'Florence'],
-        'Russia': ['Moscow', 'Kursk', 'Vladivostok'],
-    }, 3
+    print(cities2(
+        {
+            'Italy': ['Rome', 'Florence'],
+            'Russia': ['Moscow', 'Kursk', 'Vladivostok'],
+        },
+        3,
     ))

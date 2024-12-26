@@ -5,15 +5,14 @@
 Матрица может быть представлена в виде вложенного списка,
 где каждый элемент — это строка матрицы. Пример матрицы 3x2,
 где 3 — это количество строк, а 2 — количество столбцов:
-[[2, 4],
- [6, 8],
- [1, 3]]
+[[2, 4], [6, 8], [1, 3]]
 """
 
 
-def matrix_addition(matrix1: list[list[int]],
-                    matrix2: list[list[int]],
-                    ) -> list[list[int]]:
+def matrix_addition(
+        matrix1: list[list[int]],
+        matrix2: list[list[int]],
+) -> list[list[int]]:
     """
     Sum two matrices.
 
@@ -24,16 +23,18 @@ def matrix_addition(matrix1: list[list[int]],
     Returns:
         list[list[int]]: The resulting matrix.
     """
+    if (
+            len(matrix1) != len(matrix2) or
+            any(
+                len(row1) != len(row2) for row1, row2 in zip(matrix1, matrix2)
+            )
+    ):
+        print('Matrices must have the same dimensions.')
 
-    if (len(matrix1) != len(matrix2) or
-            any(len(row1) != len(row2) for row1, row2 in
-                zip(matrix1, matrix2))):
-        raise ValueError('Matrices must have the same dimensions.')
-
-    result = [[elem1 + elem2 for elem1, elem2
-               in zip(row1, row2)] for row1, row2 in zip(matrix1, matrix2)]
-
-    return result
+    return [
+        [elem1 + elem2 for elem1, elem2 in zip(row1, row2)]
+        for row1, row2 in zip(matrix1, matrix2)
+    ]
 
 
 if __name__ == '__main__':
@@ -47,5 +48,5 @@ if __name__ == '__main__':
             [10, 11, 12],
             [13, 14, 15],
             [16, 17, 18],
-        ]
+        ],
     ))
