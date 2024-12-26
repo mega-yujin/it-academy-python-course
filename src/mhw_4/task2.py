@@ -50,11 +50,11 @@ def cities2(data: dict[str, list[str]], num: int) -> str:
         Num cities and their countries.
     """
     return '\n'.join([
-                         f'{city_2}: {country_2}' for
-                         country_2, cities_2 in data.items()
-                         for city_2 in cities_2
-                     ][:num]
-                     )
+        f'{city_2}: {country_2}'
+        for country_2, cities_2 in data.items()
+        for city_2 in cities_2
+        ][:num],
+        )
 
 
 if __name__ == '__main__':
@@ -62,7 +62,7 @@ if __name__ == '__main__':
         {
             'Italy': ['Rome', 'Florence'],
             'Russia': ['Moscow', 'Kursk', 'Vladivostok'],
-         },
+        },
         3,
     ))
 

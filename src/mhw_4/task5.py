@@ -32,11 +32,8 @@ def languages():
             common_languages &= student_languages
 
     print(f'Все школьники знают хотя {len(common_languages)} язык(-а/ов)')
-    some_text = (
-        f'Хотя бы один из школьников знает 1 из '
-        f'{len(all_languages)} язык(-а/ов)'
-    )
-    print(some_text)
+    print(f'Хотя бы один из школьников знает 1 из ' +
+          f'{len(all_languages)} язык(-а/ов)')
 
     for language in all_languages:
         print(language)

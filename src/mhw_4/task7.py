@@ -10,8 +10,8 @@
 
 
 def matrix_addition(
-        matrix1: list[list[int]],
-        matrix2: list[list[int]],
+    matrix1: list[list[int]],
+    matrix2: list[list[int]],
 ) -> list[list[int]]:
     """
     Sum two matrices.
@@ -24,8 +24,7 @@ def matrix_addition(
         list[list[int]]: The resulting matrix.
     """
     if (
-            len(matrix1) != len(matrix2) or
-            any(
+            len(matrix1) != len(matrix2) or any(
                 len(row1) != len(row2) for row1, row2 in zip(matrix1, matrix2)
             )
     ):
