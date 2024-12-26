@@ -8,6 +8,7 @@
 
 def languages():
     """
+    Languages.
     Input number of students, then for each one number of
     languages they know, then those languages.
     Print how many language know all students, what language
