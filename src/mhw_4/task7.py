@@ -10,9 +10,9 @@ def calculate_matrices(matrix1, matrix2):
     """Return the result of adding two matrices."""
     result = []
 
-    for num1, _ in enumerate(matrix1):
+    for num1, value in enumerate(matrix1):
         row = []
-        for num2, _ in enumerate(matrix1):
+        for num2, _ in enumerate(value):
             row.append(matrix1[num1][num2] + matrix2[num1][num2])
         result.append(row)
 
