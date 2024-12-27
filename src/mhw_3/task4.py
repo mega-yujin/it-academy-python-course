@@ -8,8 +8,8 @@
 
 numbers = str(input('Введите числа через пробел: ')).split()
 count = 0
-for first in range(len(numbers)):
-    for sekond in range(first + 1, len(numbers)):
+for first in range(len(numbers)): # noqa: WPS518
+    for sekond in range(first + 1, len(numbers)): # noqa: WPS518
         if numbers[first] == numbers[sekond]:
             count += 1
 print(f'Количество пар: {count}')

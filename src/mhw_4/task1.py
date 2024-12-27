@@ -3,5 +3,5 @@
 а значениями кубы этих чисел.
 """
 
-some_dict = {key: key**3 for key in range(1,21)}
+some_dict = {key: key**3 for key in range(1, 21)}
 print(some_dict)

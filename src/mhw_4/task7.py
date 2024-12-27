@@ -14,6 +14,9 @@ matrix_2 = [
     [1, 3, 7, 15]
 ]
 
+
 def sum_matrix(matrix_1, matrix_2):
     return [[ti + tj for ti, tj in zip(fi, fj)] for fi, fj in zip(matrix_1, matrix_2)]
+
+
 print(sum_matrix(matrix_1, matrix_2))
