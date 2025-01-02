@@ -15,9 +15,9 @@ def unique2(seq1: list[int], seq2: list[int]) -> int:
         seq2 (list[int]): The second list.
 
     Returns:
-        int: The number of unique elements that occur in one list.
+        int: The number of unique elements that occur in lists.
     """
-    return len((set(seq1) - set(seq2)))
+    return len(set(seq1) ^ set(seq2))
 
 
 if __name__ == '__main__':

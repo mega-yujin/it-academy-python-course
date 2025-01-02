@@ -11,7 +11,7 @@ def dict_comprehension_20() -> dict:
     Returns:
          dict: Dictionary with keys from 1 to 20, values are keys cubed.
     """
-    return {num: num ** 3 for num in range(20)}
+    return {num: num ** 3 for num in range(1, 21)}
 
 
 if __name__ == '__main__':

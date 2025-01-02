@@ -16,60 +16,62 @@
 """
 
 
-def cities(data: dict[str, list[str]], num: int) -> str:
-    """
-    Return the num cities and their countries in order.
-
-    Args:
-        data: dict[str, list[str]]: Countries and their cities.
-        num: int: Amount of cities.
-
-    Returns:
-        Num cities and their countries.
-    """
-    answer = []
-    for country_1, cities_1 in data.items():
-        for city_1 in cities_1:
-            if num <= 0:
-                return ''.join(answer)
-            answer.append(f'{city_1}: {country_1} \n')
-            num -= 1
-
-    return ''.join(answer)
-
-
-def cities2(data: dict[str, list[str]], num: int) -> str:
+def cities(data: dict[str, list[str]],  wanted: list) -> str:
     """
     Return the num cities and their countries in order.
 
     Args:
         data (dict[str, list[str]]): Countries and their cities.
-        num (int): Amount of cities.
+        wanted (list): Cities to return.
 
     Returns:
-        Num cities and their countries.
+        Cities and their countries.
+    """
+    answer = []
+    for country_1, cities_1 in data.items():
+        for city_1 in cities_1:
+            if city_1 in wanted:
+                answer.append(f'{city_1}: {country_1} \n')
+
+    return ''.join(answer)
+
+
+def cities2(data: dict[str, list[str]], wanted: list) -> str:
+    """
+    Return the num cities and their countries in order.
+
+    Args:
+        data (dict[str, list[str]]): Countries and their cities.
+        wanted (list): Cities to return.
+
+    Returns:
+        Cities and their countries.
     """
     return '\n'.join([
         f'{city_2}: {country_2}'
         for country_2, cities_2 in data.items()
         for city_2 in cities_2
-    ][:num],
+        if city_2 in wanted
+    ],
     )
 
 
+places = {}
+for country_num in range(int(input('Введите кол-во стран: '))):
+    place = input(f'Введите страну {country_num + 1} и ее города: ').split()
+    places[place[0]] = place[1:]
+
+wanted_inp = []
+for city_num in range(int(input('Введите кол-во городов: '))):
+    wanted_inp.append(input(f'Введите город {city_num + 1}: '))
+
 if __name__ == '__main__':
     print(cities(
-        {
-            'Italy': ['Rome', 'Florence'],
-            'Russia': ['Moscow', 'Kursk', 'Vladivostok'],
-        },
-        3,
+        places,
+        wanted_inp,
     ))
 
     print(cities2(
-        {
-            'Italy': ['Rome', 'Florence'],
-            'Russia': ['Moscow', 'Kursk', 'Vladivostok'],
-        },
-        3,
+        places,
+        wanted_inp,
     ))
