@@ -16,7 +16,7 @@
 """
 
 
-def cities(data: dict[str, list[str]],  wanted: list) -> str:
+def cities(data: dict[str, list[str]], wanted: list) -> str:
     """
     Return the num cities and their countries in order.
 
