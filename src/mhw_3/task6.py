@@ -38,8 +38,8 @@ def sorted_list2(seq2: list):
     """
     sorted_seq2 = list(map(int, seq2[:]))
     non_zero_ind = 0
-    for ind in range(len(sorted_seq2)):
-        if sorted_seq2[ind] != 0:
+    for ind, elem in enumerate(sorted_seq2):
+        if elem != 0:
             # Change place between a found non-zero and first known zero
             temp = sorted_seq2[non_zero_ind]
             sorted_seq2[non_zero_ind] = sorted_seq2[ind]
