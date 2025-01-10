@@ -15,8 +15,8 @@ list_of_numbers = list(
         ).split(),
     ),
 )
-count_pairs = 0
-for number in set(list_of_numbers):
-    total = list_of_numbers.count(number)
-    count_pairs += (total * (total - 1)) // 2
+count_pairs = sum(
+    (list_of_numbers.count(number) * (list_of_numbers.count(number) - 1)) // 2
+    for number in set(list_of_numbers)
+)
 print(count_pairs)
