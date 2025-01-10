@@ -26,15 +26,15 @@ def get_ranges(unsorted: list) -> str:
             end = element
         else:
             if start == end:
-                result += f'{start},'
+                result = '{0}{1},'.format(result, start)
             else:
-                result += f'{start}-{end},'
+                result = '{0}{1}-{2},'.format(result, start, end)
             start = element
             end = element
     if start == end:
-        result += f'{start}'
+        result = '{0}{1}'.format(result, start)
     else:
-        result += f'{start}-{end}'
+        result = '{0}{1}-{2}'.format(result, start, end)
     return result
 
 

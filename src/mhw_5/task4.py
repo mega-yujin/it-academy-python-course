@@ -10,77 +10,69 @@ years.txt – гистограмма годов.
 """
 
 
-def top250_movies():
-    """
-    Put names of 250 top movies from file ratings.list to
-    file top250_movies.txt
-    """
-    allow = False
-    with open('data_hw5/ratings.list', 'r') as file:
-        with open('top250_movies.txt', 'w') as file2:
+def find_beginning(func):
+    def wrapper():
+        allow = False
+        result = []
+        with open('data_hw5/ratings.list', 'r') as file:
             for ind, line in enumerate(file):
                 if 'New  Distribution  Votes  Rank' in line and not allow:
                     allow = True
                     continue
                 if allow:
                     line_list = line.split()
-                    file2.write(' '.join(line_list[3: -1]) + '\n')
-                if 'BOTTOM 10 MOVIES (1500+ VOTES)' in line and allow:
+                    result.append(line_list[2:])
+                if len(result) >= 250:
                     break
+            func(result)
+    return wrapper
 
 
-def ratings():
+@find_beginning
+def top250_movies(result):
+    """
+    Put names of 250 top movies from file ratings.list to
+    file top250_movies.txt
+    """
+    with open('top250_movies.txt', 'w') as file2:
+        for title in result:
+            file2.write(f'{' '.join(title[1: -1])}\n')
+
+
+@find_beginning
+def ratings(result):
     """
     Count ratings of 250 top movies from file ratings.list and put
     them to file ratings.txt
     """
-    allow = False
-    ratings_list = []
     checked = set()
-    with open('data_hw5/ratings.list', 'r') as file:
-        with open('ratings.txt', 'w') as file2:
-            for ind, line in enumerate(file):
-                if 'New  Distribution  Votes  Rank' in line and not allow:
-                    allow = True
-                    continue
-                if allow:
-                    ratings_list.append(line.split()[2])
-                if len(ratings_list) == 250:
-                    break
-            ratings_list.sort()
-            for rating in ratings_list:
-                if rating not in checked:
-                    ratings_list.count(rating)
-                    file2.write(f'{rating}: {ratings_list.count(rating)}\n')
-                    checked.add(rating)
+    with open('ratings.txt', 'w') as file2:
+        for ind, element in enumerate(result):
+            result[ind] = element[0]
+        result.sort()
+        for rating in result:
+            if rating not in checked:
+                result.count(rating)
+                file2.write(f'{rating}: {result.count(rating)}\n')
+                checked.add(rating)
 
 
-def years():
+@find_beginning
+def years(result):
     """
     Count release years of 250 top movies from file ratings.list
     and put them to file ratings.txt
     """
-    allow = False
-    years_list = []
     checked = set()
-    with open('data_hw5/ratings.list', 'r') as file:
-        with open('years.txt', 'w') as file2:
-            for ind, line in enumerate(file):
-                if 'New  Distribution  Votes  Rank' in line and not allow:
-                    allow = True
-                    continue
-                if allow:
-                    line = line.replace('(', '')
-                    line = line.replace(')', '')
-                    years_list.append(line.split()[-1])
-                if len(years_list) == 250:
-                    break
-            years_list.sort()
-            for year in years_list:
-                if year not in checked:
-                    years_list.count(year)
-                    file2.write(f'{year}: {years_list.count(year)}\n')
-                    checked.add(year)
+    with open('ratings.txt', 'w') as file2:
+        for ind, element in enumerate(result):
+            result[ind] = element[-1]
+        result.sort()
+        for year in result:
+            if year not in checked:
+                result.count(year)
+                file2.write(f'{year}: {result.count(year)}\n')
+                checked.add(year)
 
 
 top250_movies()

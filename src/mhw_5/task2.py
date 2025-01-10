@@ -9,7 +9,7 @@
 def save_result(func):
     def wrapper(*args):
         with open('saved_results.txt', 'a') as file:
-            file.write(str(func(*args)) + '\n')
+            file.write(f'{str(func(*args))}\n')
         return func(*args)
     return wrapper
 

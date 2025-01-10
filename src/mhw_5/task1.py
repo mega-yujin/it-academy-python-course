@@ -17,17 +17,15 @@ def runner(*args):
     Args:
         args: Functions names.
     """
-    for func_name in args:
-        if hasattr(task1_functions, func_name):
-            getattr(task1_functions, func_name)()
-        else:
-            print(f"Function {func_name} does not exist.")
+    if args:
+        for func_name in args:
+            if hasattr(task1_functions, func_name):
+                getattr(task1_functions, func_name)()
+            else:
+                print(f"Function {func_name} does not exist.")
     else:
         task1_functions.dict_comprehension_20()
         task1_functions.all_the_same(input().split())
         task1_functions.ugly_number()
         task1_functions.find_fibonacci(int(input()))
         task1_functions.fizzbuzz()
-
-
-runner('fizzbuzz', 'ugly_number')
