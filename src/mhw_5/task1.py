@@ -10,6 +10,7 @@ runner(‘func_1’, ‘func_2’...) - вызывает все переданн
 
 import task1_functions
 
+
 def runner(*args):
     if args:
         for func_name in args:
@@ -22,6 +23,7 @@ def runner(*args):
         task1_functions.func_3()
         task1_functions.func_4()
         task1_functions.func_5()
+
 
 runner()
 runner('func_1')
