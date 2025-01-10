@@ -16,15 +16,15 @@ def get_ranges(unsorted: list):
             finish = element
         else:
             if start == finish:
-                result += (f'{start},')
+                result += (f'{start},')  # noqa: WPS336
             else:
-                result += (f'{start}-{finish},')
+                result += (f'{start}-{finish},')  # noqa: WPS336
             start = element
             finish = element
     if start == finish:
-        result += (f'{start}')
+        result += (f'{start}')  # noqa: WPS336
     else:
-        result += (f'{start}-{finish}')
+        result += (f'{start}-{finish}')  # noqa: WPS336
     return result
 
 
