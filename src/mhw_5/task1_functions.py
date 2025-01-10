@@ -8,7 +8,7 @@ def func_2():
     return (len(set(list1) & set(list2)))
 
 
-def func_3 ():
+def func_3():
     list1 = [1, 2, 3, 4, 3, 5, 6, 7, 8]
     list2 = [4, 6, 5, 7, 8, 9, 10, 11, 9, 12]
     return (len(set(list1) ^ set(list2)))
