@@ -6,10 +6,5 @@
 """
 
 some_list = [3, 'ololo', 4, 3, 2, 3, 4, 5, 3, 'Alice', 8, 3, 'alice']
-tuple_list = set()
-new_list = []
-for element in some_list:
-    if element not in tuple_list:
-        tuple_list.add(element)
-        new_list.append(element)
+new_list = [element for element in some_list if some_list.count(element) == 1]
 print(new_list)
