@@ -53,10 +53,12 @@ if __name__ == '__main__':
                'Store Info\n',
                'Sell good\n',
                'Replenish good\n',
-               'Good info\n'
+               'Good info\n',
+               'Finish\n',
                ]
 
-    while True:
+    finish = False
+    while not finish:
         print(''.join(actions))
         match input('What to do: '):
             case 'Expand store':
@@ -67,3 +69,5 @@ if __name__ == '__main__':
                 fish.sell(int(input('How much: ')))
             case 'Replenish good':
                 fish.replenish(int(input('How much: ')))
+            case 'Finish':
+                finish = True

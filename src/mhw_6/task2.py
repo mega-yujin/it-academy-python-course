@@ -11,7 +11,8 @@ import random
 
 
 class TooManyErrors(Exception):
-    pass
+    def __init__(self, message):
+        self.message = message
 
 
 def toomanyerrors(number):

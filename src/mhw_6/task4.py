@@ -57,13 +57,13 @@ S(8)=22 и S(100)=3604.
 # (at least on my PC) :(.
 def optimized_recursion(num):
     answer = 0
-    for i in range(1, num + 1):
-        reversed_i = 0
-        temp = i
+    for number in range(1, num + 1):
+        reversed_number = 0
+        temp = number
         while temp > 0:
-            reversed_i = (reversed_i << 1) | (temp & 1)  # Efficient bit reversal
+            reversed_number = (reversed_number << 1) | (temp & 1)  # Efficient bit reversal
             temp >>= 1
-        answer += reversed_i
+        answer += reversed_number
         # if not i % 1000000:
         #     print((time.time()-start)/(i / 3**37 * 100)/3600/24/365.2422)
     return answer
