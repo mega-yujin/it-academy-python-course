@@ -10,7 +10,7 @@ years.txt – гистограмма годов.
 """
 
 
-def find_movies(func):
+def find_beginning(func):
     def wrapper():
         allow = False
         result = []
@@ -28,7 +28,7 @@ def find_movies(func):
     return wrapper
 
 
-@find_movies
+@find_beginning
 def top250_movies(result):
     """
     Put names of 250 top movies from file ratings.list to
@@ -39,7 +39,7 @@ def top250_movies(result):
             file2.write(f'{" ".join(title[1: -1])}\n')
 
 
-@find_movies
+@find_beginning
 def ratings(result):
     """
     Count ratings of 250 top movies from file ratings.list and put
@@ -57,7 +57,7 @@ def ratings(result):
                 checked.add(rating)
 
 
-@find_movies
+@find_beginning
 def years(result):
     """
     Count release years of 250 top movies from file ratings.list
