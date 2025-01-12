@@ -8,16 +8,14 @@ def dict_comprehension_20() -> dict:
     return {num: num ** 3 for num in range(1, 21)}
 
 
-def all_the_same(elements: list[any]) -> bool:
+def all_the_same() -> bool:
     """
     Check if all elements in a sequence are equal.
-
-    Args:
-        elements (list[any]): Sequence to check.
 
     Returns:
         bool: True if uniform.
     """
+    elements = [1, 2, 1]
     if len(set(elements)) <= 1:
         return True
     return False
@@ -30,7 +28,7 @@ def ugly_number() -> int:
     Returns:
         int: The Nth ugly number.
     """
-    num = int(input('Enter a number: '))
+    num = 12
     ugly_numbers = [0 for _ in range(num)]
     ugly_numbers[0] = 1
 
@@ -59,16 +57,14 @@ def ugly_number() -> int:
     return ugly_numbers[-1]
 
 
-def find_fibonacci(number: int) -> int:
+def find_fibonacci() -> int:
     """
     Calculate the nth Fibonacci number.
-
-    Args:
-        number (int): The position in the Fibonacci sequence.
 
     Returns:
         int: The nth Fibonacci number.
     """
+    number = 6
     if number == 1:
         return 0
     if number == 2:

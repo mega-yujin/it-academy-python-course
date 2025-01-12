@@ -19,13 +19,18 @@ def runner(*args):
     """
     if args:
         for func_name in args:
-            if hasattr(task1_functions, func_name):
-                getattr(task1_functions, func_name)()
-            else:
-                print(f"Function {func_name} does not exist.")
+            func = getattr(task1_functions, func_name, None)
+            if func:
+                func()
     else:
-        task1_functions.dict_comprehension_20()
-        task1_functions.all_the_same(input().split())
-        task1_functions.ugly_number()
-        task1_functions.find_fibonacci(int(input()))
-        task1_functions.fizzbuzz()
+        module_attributes = dir(task1_functions)
+        print(module_attributes)
+        for attribute_name in module_attributes:
+            print(attribute_name)
+            attribute = getattr(task1_functions, attribute_name)
+            print(attribute)
+            if callable(attribute):
+                attribute()
+
+
+runner()
