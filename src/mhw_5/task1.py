@@ -13,18 +13,17 @@ def runner(*args):
     """Return given functions."""
     if args:
         for func_name in args:
-            func = getattr(task1_functions, func_name)
+            func = getattr(task1_functions, func_name, None)
             if callable(func):
                 func()
             else:
                 print(f'Функция "{func_name}" не найдена.')
 
     else:
-        task1_functions.func_1()
-        task1_functions.func_2()
-        task1_functions.func_3()
-        task1_functions.func_4()
-        task1_functions.func_5()
+        for name_func in dir(task1_functions):
+            func = getattr(task1_functions, name_func, None)
+            if callable(func):
+                func()
 
 
 if __name__ == '__main__':

@@ -34,8 +34,9 @@ def extract_top_movies_from_file(input_file, rating_count, year_count):
     movie_found = False
 
     for line in input_file:
-        if 'The Shawshank Redemption' in line:
+        if 'New  Distribution  Votes  Rank  Title' in line:
             movie_found = True
+            continue
         if movie_found:
             segments = line.split()
             movie_titles.append(' '.join(segments[3:-1]))
@@ -65,8 +66,7 @@ def process_ratings_file():
     year_count = {}
 
     try:
-        with open('/Users/aleksejmalusickij/Python_Education/it-academy-python-course/src/mhw_5/data_hw5/ratings.list',  # noqa: WPS317, E501
-                  'r') as input_file:  # noqa: WPS318, WPS319
+        with open('./data_hw5/ratings.list', 'r') as input_file:
             top_movies = extract_top_movies_from_file(input_file, rating_count, year_count)
     except FileNotFoundError:
         print('Файл не найден')

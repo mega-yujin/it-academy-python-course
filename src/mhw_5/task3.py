@@ -28,13 +28,14 @@ def get_ranges(numbers):
 
 def main():
     """Return and displays the main result."""
-    try:  # noqa: WPS229
-        input_numbers = input('Введите числа через пробел: ')
+    input_numbers = input('Введите числа через пробел: ')
+    try:
         numbers = list(map(int, input_numbers.split(' ')))
-        print(f'Результат: {get_ranges(sorted(set(numbers)))}')
     except ValueError:
         print('Список должен содержать числа!')
         main()
+    else:
+        print(f'Результат: {get_ranges(sorted(set(numbers)))}')
 
 
 if __name__ == '__main__':
