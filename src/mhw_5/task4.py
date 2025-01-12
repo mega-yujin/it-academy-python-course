@@ -10,25 +10,24 @@ years.txt – гистограмма годов.
 """
 
 
-def find_beginning(func):
+def find_movies(func):
     def wrapper():
-        allow = False
         result = []
         with open('data_hw5/ratings.list', 'r') as file:
-            for ind, line in enumerate(file):
-                if 'New  Distribution  Votes  Rank' in line and not allow:
-                    allow = True
+            start_reading = False
+            for line in file:
+                if 'New  Distribution  Votes  Rank' in line:
+                    start_reading = True
                     continue
-                if allow:
-                    line_list = line.split()
-                    result.append(line_list[2:])
+                if start_reading:
+                    result.append(line.split()[2:])
                 if len(result) >= 250:
                     break
-            func(result)
+        func(result)
     return wrapper
 
 
-@find_beginning
+@find_movies
 def top250_movies(result):
     """
     Put names of 250 top movies from file ratings.list to
@@ -39,7 +38,7 @@ def top250_movies(result):
             file2.write(f'{" ".join(title[1: -1])}\n')
 
 
-@find_beginning
+@find_movies
 def ratings(result):
     """
     Count ratings of 250 top movies from file ratings.list and put
@@ -57,7 +56,7 @@ def ratings(result):
                 checked.add(rating)
 
 
-@find_beginning
+@find_movies
 def years(result):
     """
     Count release years of 250 top movies from file ratings.list
