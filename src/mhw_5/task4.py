@@ -10,7 +10,7 @@ years.txt – гистограмма годов.
 """
 
 
-def find_movies(func):  # noqa WPS231
+def find_movies(func):  # noqa: WPS231
     def wrapper():
         result = []
         with open('data_hw5/ratings.list', 'r') as file:
