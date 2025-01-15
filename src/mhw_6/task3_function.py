@@ -6,7 +6,7 @@
 """
 
 
-def languages(students: list[set]):
+def languages(students: list):
     """
     Languages.
     Input number of students, then for each one number of

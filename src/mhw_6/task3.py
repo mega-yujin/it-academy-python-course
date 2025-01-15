@@ -17,12 +17,41 @@ class TestLanguagesFunc(unittest.TestCase):
         with self.assertRaises(TypeError):
             languages(data)
 
+    def test_wrong_type_data(self):
+        data = [123, 234]
+        with self.assertRaises(TypeError):
+            languages(data)
+
     def test_2common_2different_languages(self):
         data = [{'rus', 'eng', 'esp'}, {'rus', 'eng', 'ukr'}]
         wanted = """Все школьники знают хотя 2 язык(-а/ов)
 Хотя бы один из школьников знает 1 из 4 язык(-а/ов)
 eng
 esp
+rus
+ukr\n"""
+        self.assertEqual(
+            languages(data),
+            wanted
+        )
+
+    def test_0common_3different_languages(self):
+        data = [{'rus', 'eng'}, {'ukr'}]
+        wanted = """Все школьники знают хотя 0 язык(-а/ов)
+Хотя бы один из школьников знает 1 из 3 язык(-а/ов)
+eng
+rus
+ukr\n"""
+        self.assertEqual(
+            languages(data),
+            wanted
+        )
+
+    def test_3common_3different_languages(self):
+        data = [{'rus', 'eng', 'ukr'}, {'rus', 'eng', 'ukr'}]
+        wanted = """Все школьники знают хотя 3 язык(-а/ов)
+Хотя бы один из школьников знает 1 из 3 язык(-а/ов)
+eng
 rus
 ukr\n"""
         self.assertEqual(
