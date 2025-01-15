@@ -36,24 +36,24 @@ ukr\n"""
         )
 
     def test_0common_3different_languages(self):
-        data = [{'rus', 'eng'}, {'ukr'}]
+        data = [{'hin', 'tur'}, {'por'}]
         wanted = """Все школьники знают хотя 0 язык(-а/ов)
 Хотя бы один из школьников знает 1 из 3 язык(-а/ов)
-eng
-rus
-ukr\n"""
+hin
+por
+tur\n"""
         self.assertEqual(
             languages(data),
             wanted
         )
 
     def test_3common_3different_languages(self):
-        data = [{'rus', 'eng', 'ukr'}, {'rus', 'eng', 'ukr'}]
+        data = [{'ger', 'bel', 'chi'}, {'ger', 'bel', 'chi'}]
         wanted = """Все школьники знают хотя 3 язык(-а/ов)
 Хотя бы один из школьников знает 1 из 3 язык(-а/ов)
-eng
-rus
-ukr\n"""
+bel
+chi
+ger\n"""
         self.assertEqual(
             languages(data),
             wanted
