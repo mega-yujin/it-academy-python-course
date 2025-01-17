@@ -18,7 +18,6 @@ class TooManyErrors(Exception):
 def toomanyerrors(number):
     def decorator(func):
         def wrapper():
-            errors = 0
             rounds = 0
             while rounds < number:
                 try:
