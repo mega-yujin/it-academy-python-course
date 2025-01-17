@@ -20,21 +20,21 @@ def toomanyerrors(number):
         def wrapper():
             errors = 0
             rounds = 0
-            while errors < number:
+            while rounds < number:
                 try:
                     func()
                 except ValueError:
-                    errors += 1
+                    raise TooManyErrors(f'Failed after {rounds} rounds')
                 rounds += 1
-            raise TooManyErrors(f'Failed after {rounds} rounds')
         return wrapper
     return decorator
 
 
-@toomanyerrors(50)
+@toomanyerrors(2)
 def russian_roulette():
     if random.choice([True, False]):
         raise ValueError('Random error')
 
 
 russian_roulette()
+print('Success!')
