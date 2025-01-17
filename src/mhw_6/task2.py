@@ -9,7 +9,7 @@ import random
 
 
 class TooManyErrors(Exception):
-    ...
+    None
 
 
 def decor(numbers):  # noqa: C901 WPS231
