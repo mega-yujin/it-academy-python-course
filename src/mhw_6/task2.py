@@ -22,7 +22,7 @@ def decor(numbers):
                 except:
                     count += 1
                     if count >= numbers:
-                        raise TooManyErrors ('Лимит попыток исчерпан')
+                        raise TooManyErrors('Лимит попыток исчерпан')
         return wrapper
     return decorator
 
