@@ -12,17 +12,17 @@ class TooManyErrors(Exception):
     ...
 
 
-def decor(numbers):
-    def decorator(func):
+def decor(numbers):  # noqa: C901 WPS231
+    def decorator(func):  # noqa: WPS231
         def wrapper():
             count = 0
             while count < numbers:
                 try:
                     return func()
-                except:
+                except:  # noqa: E722
                     count += 1
                     if count >= numbers:
-                        raise TooManyErrors('Лимит попыток исчерпан')
+                        raise TooManyErrors('Лимит попыток исчерпан')  # noqa: WPS220
         return wrapper
     return decorator
 
