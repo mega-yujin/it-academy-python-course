@@ -14,12 +14,17 @@
 Для каждого из запроса выведите название страны, в котором находится данный город.
 """
 
-some_dict = {}
-for _ in range(int(input('Введите количество стран: '))):
-    country, *cities = input('Введите страну и её города: ').split()
-    some_dict[country] = cities
-for _ in range(int(input('Введите число городов: '))):
-    city = input('Введите город: ')
-    for country, cities in some_dict.items():
-        if city in cities:
-            print(country)
+
+def cities_in_country():
+    some_dict = {}
+    for _ in range(int(input('Введите количество стран: '))):
+        country, *cities = input('Введите страну и её города: ').split()
+        some_dict[country] = cities
+    for _ in range(int(input('Введите число городов: '))):
+        city = input('Введите город: ')
+        for country, cities in some_dict.items():
+            if city in cities:
+                print(country)
+
+
+print(cities_in_country())
