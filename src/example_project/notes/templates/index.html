@@ -14,14 +14,14 @@
                     <p class="card-text">{{ note.content }}</p>
                     <p class="text-muted">{{ note.created_at }}</p>
                     <div class="d-flex justify-content-between">
-                        <a href="{{ url_for('toggle_favorite', note_id=note.id) }}" class="btn btn-outline-warning">
-                            {% if note.is_favorite %}★{% else %}☆{% endif %}
+                        {% comment %} <a href="{% url 'toggle_favorite' note_id=note.id %}" class="btn btn-outline-warning">
+                            {% if note.is_favorite %}*{% else %}☆{% endif %}
                         </a>
                         <a href="{{ url_for('delete_note', note_id=note.id) }}"
                            class="btn btn-outline-danger"
                            onclick="return confirm('Вы уверены, что хотите удалить эту заметку?')">
                             Удалить
-                        </a>
+                        </a> {% endcomment %}
                     </div>
                 </div>
             </div>
@@ -29,6 +29,6 @@
         {% endfor %}
     </div>
 {% else %}
-    <p>Заметок пока нет. <a href="{{ url_for('add_note') }}">Добавить первую заметку</a></p>
+    <p>Заметок пока нет. <a href="{% url 'add_note' %}">Добавить первую заметку</a></p>
 {% endif %}
 {% endblock %}
