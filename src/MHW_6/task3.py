@@ -12,7 +12,7 @@ class TestProcessMovies(unittest.TestCase):
     """Класс для тестирования функции process_top_movies."""
 
     def test_empty_data(self):
-        """Проверяет, что пустой файл вызывает исключения."""
+        """Проверяет, что пустой файл не вызывает ошибок и возвращает пустой список."""
         empty_file = []
         ratings = {}
         years = {}

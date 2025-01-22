@@ -18,13 +18,15 @@ class Cloths:
         self.price = price
         self.kind = kind
         self.color = color
+        self.is_fitting = False
 
     def describe_clothes(self):
         """Описывает товар."""
-        return f'Товар {self.kind}, {self.color} цвета, стоимостью {self.price} рублей,'
+        return f'{self.kind}, {self.color} цвета, стоимостью {self.price} рублей'
 
     def try_on(self):
         """Товар относится в примерочную."""
+        self.is_fitting = True
         print(f'{self.describe_clothes()} ожидает Вас в примерочной')
 
 
@@ -33,38 +35,34 @@ class Basket:
 
     def __init__(self):
         """Инициализирует класс."""
-        self.list_of_cloths = {}
         self.contents = []
         self.total_price = 0
 
-    def update_the_basket(self):
-        """Обновляет содержимое корзины."""
-        self.contents = list(self.list_of_cloths.keys())
-        self.total_price = sum(self.list_of_cloths.values())
-
     def put_into_the_basket(self, cloths: Cloths):
         """Кладет товар в корзину."""
-        self.list_of_cloths[cloths.kind] = cloths.price
-        self.update_the_basket()
+        self.contents.append(cloths)
+        self.__update_the_basket()
         print(f'{cloths.describe_clothes()} положен в корзину')
 
     def remove_from_the_basket(self, cloths: Cloths):
         """Удаляет товар из корзины."""
-        if cloths.kind in self.list_of_cloths:
-            self.list_of_cloths.pop(cloths.kind)
+        if cloths in self.contents:
+            self.contents.remove(cloths)
             print(f'{cloths.describe_clothes()} убран из корзины')
-            self.update_the_basket()
+            self.__update_the_basket()
         else:
             print(f'{cloths.describe_clothes()} нет в корзине')
 
     def check_the_basket(self):
         """Проверяет товары, которые лежат в корзине."""
-        print(f'В корзине лежат товары: {", ".join(self.contents)} на сумму {self.total_price} рублей')
+        print(
+            f'В корзине лежат товары: {", ".join(cloths.describe_clothes() for cloths in self.contents)} \n'
+            f'Общая стоимость корзины: {self.total_price} рублей',
+        )
 
-    def pay_the_basket(self):
-        """Оплачивает корзину."""
-        self.update_the_basket()
-        print(f'Товары: {", ".join(self.contents)} на сумму {self.total_price} рублей оплачены')
+    def __update_the_basket(self): # type: ignore # noqa:  WPS112
+        """Обновляет содержимое корзины."""
+        self.total_price = sum(cloths.price for cloths in self.contents)
 
 
 class Customer:
@@ -80,11 +78,16 @@ class Customer:
     def add_to_wishlist(self, cloths: Cloths):
         """Записывает товар в вишлист покупателя."""
         self.wishlist.append(cloths)
-        print(f'{cloths.describe_clothes()} в свой вишлист')
+        print(f'Записывает {cloths.describe_clothes()} в свой вишлист')
 
     def check_discount_card_number(self):
         """Позволяет узнать номер дисконтной карты."""
         print(f'Номер дисконтной карты покупателя {self.name}: {self.discount_card}')
+
+    def pay_the_basket(self):
+        """Оплачивает корзину."""
+        items = ','.join(cloths.describe_clothes() for cloths in self.basket.contents)
+        print(f'Товары: {items} на сумму {self.basket.total_price} рублей оплачены')
 
 
 if __name__ == '__main__':
@@ -100,4 +103,4 @@ if __name__ == '__main__':
     customer.basket.check_the_basket()
     customer.add_to_wishlist(jeans)
     customer.check_discount_card_number()
-    customer.basket.pay_the_basket()
+    customer.pay_the_basket()
