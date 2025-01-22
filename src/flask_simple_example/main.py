@@ -1,7 +1,9 @@
+# noqa
 from flask import Flask, render_template
 from dataclasses import dataclass
 from uuid import uuid4, UUID
 from datetime import datetime
+
 
 
 @dataclass
