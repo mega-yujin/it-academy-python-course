@@ -1,6 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
-from uuid import uuid4
 from datetime import datetime
+from uuid import uuid4
+
+from flask import Flask, jsonify, redirect, render_template, request, url_for
+
 from database import NotesDatabase
 from models import Note
 
