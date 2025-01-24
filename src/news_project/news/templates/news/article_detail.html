@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ article.title }}</title>
+</head>
+<body>
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.content }}</p>
+    <a href="{% url 'delete_article' article.pk %}">Delete</a>
+    <a href="{% url 'article_list' %}">Return</a>
+</body>
+</html>
