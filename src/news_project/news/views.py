@@ -29,6 +29,7 @@ def add_article(request):
     else:
         form = ArticleForm()
     users = User.objects.all()
+    # User.objects.save(username='Bob', password='1234')
     return render(request, 'news/add_article.html', {'form': form, 'users': users})
 
 
