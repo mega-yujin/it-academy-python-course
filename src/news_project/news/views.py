@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from models import Article
-from forms import ArticleForm
+from .models import Article
+from .forms import ArticleForm
 from django.contrib.auth.models import User
 
 # Create your views here.
