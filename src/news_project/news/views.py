@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404, redirect
+# from django.shortcuts import render, get_object_or_404, redirect
 from .models import Article
 from .forms import ArticleForm
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, DeleteView, CreateView
 from django.urls import reverse_lazy
 
