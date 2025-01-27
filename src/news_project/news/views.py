@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Article
-from .forms import ArticleForm
+from models import Article
+from forms import ArticleForm
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -8,16 +8,12 @@ from django.contrib.auth.models import User
 
 def article_list(request):
     article = Article.objects.all()
-    return render(
-        request, 'news/article_list.html', {'articles': article}
-                  )
+    return render(request, 'news/article_list.html', {'articles': article})
 
 
 def article_detail(request, pk):
     article = get_object_or_404(Article, pk=pk)
-    return render(
-        request, 'news/article_detail.html', {'article': article}
-                  )
+    return render(request, 'news/article_detail.html', {'article': article})
 
 
 def add_article(request):
