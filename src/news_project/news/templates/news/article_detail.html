@@ -6,7 +6,11 @@
 <body>
     <h1>{{ article.title }}</h1>
     <p>{{ article.content }}</p>
-    <a href="{% url 'delete_article' article.pk %}">Delete</a>
+    <p>By {{ article.author }}</p>
+    <p>At {{ article.created_at }}</p>
+    <p>Is published: {{ article.is_published }}</p>
+    <p>Categories: {{ article.category }}</p>
     <a href="{% url 'article_list' %}">Return</a>
+    <a href="{% url 'delete_article' article.pk %}">Delete</a>
 </body>
 </html>
