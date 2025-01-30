@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Удаление заметки{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h2>Удаление заметки</h2>
+        <p>Вы уверены, что хотите удалить заметку "{{ note.title }}"?</p>
+        
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Да, удалить</button>
+            <a href="{% url 'note_detail' pk=note.pk %}" class="btn btn-secondary">Отмена</a>
+        </form>
+    </div>
+</div>
+{% endblock %} 
