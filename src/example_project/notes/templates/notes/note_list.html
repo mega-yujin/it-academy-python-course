@@ -11,17 +11,25 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{ note.title }}</h5>
+                    <form method="post" action="{% url 'toggle_favorite' pk=note.pk %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-link p-0">
+                            {% if note.is_favorite %}
+                                <i class="fas fa-star text-warning">Удалить из избранного</i>
+                            {% else %}
+                                <i class="far fa-star">Добавить в избранное</i>
+                            {% endif %}
+                        </button>
+                    </form>
                     <p class="card-text">{{ note.content }}</p>
                     <p class="text-muted">{{ note.created_at }}</p>
-                        <div class="mb-3">
-                            {% for tag in note.tags.all %}
-                            <span class="badge bg-secondary me-1">{{ tag.name }}</span>
-                            {% endfor %}
-                        </div>
+                    {% for tag in note.tags.all %}
+                        <pn class="badge bg-secondary me-1">{{ tag.name }}</pn>
+                    {% endfor %}
                     <div class="d-flex justify-content-between">
-                        <a href="{% url 'note_detail' pk=note.id %}" class="btn btn-primary btn-sm">Подробнее</a>
-                        <a href="{% url 'note_update' pk=note.id %}" class="btn btn-primary btn-sm">Изменить</a>
-                        <a href="{% url 'note_delete' pk=note.id %}" class="btn btn-primary btn-sm">Удалить</a>
+                        <a href="{% url 'note_detail' pk=note.id %}">Подробнее</a>
+                        <a href="{% url 'note_update' pk=note.id %}">Изменить</a>
+                        <a href="{% url 'note_delete' pk=note.id %}">Удалить</a>
                         {% comment %} <a href="{% url 'toggle_favorite' note_id=note.id %}" class="btn btn-outline-warning">
                             {% if note.is_favorite %}*{% else %}☆{% endif %}
                         </a>
