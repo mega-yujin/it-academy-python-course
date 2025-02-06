@@ -1,60 +1,62 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 
-from .models import Note, Tag
+from .models import Tag, Note
 
 
-class NoteForm(forms.Form):
-    title = forms.CharField(
-        label='Заголовок',
-        max_length=200,
-        help_text='Краткое название заметки',
-        required=True,
-    )
-    content = forms.CharField(
-        label='Содержание заметки',
-        help_text='Основной текст заметки',
-        required=True,
-    )
-    file = forms.FileField(
-        label='Прикрепить файл',
+class MultipleFileInput(forms.ClearableFileInput):
+    allow_multiple_selected = True
+
+
+class MultipleFileField(forms.FileField):
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault("widget", MultipleFileInput())
+        super().__init__(*args, **kwargs)
+
+    def clean(self, data, initial=None):
+        single_file_clean = super().clean
+        if isinstance(data, (list, tuple)):
+            result = [single_file_clean(d, initial) for d in data]
+        else:
+            result = single_file_clean(data, initial)
+        return result
+
+
+class NoteForm(forms.ModelForm):
+    files = MultipleFileField(
         required=False,
+        label='Файлы',
+        widget=MultipleFileInput(attrs={'class': 'form-control'})
+    )
+    new_tag = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Введите название нового тега'
+        }),
+        label='Создать новый тег'
     )
     tags = forms.ModelMultipleChoiceField(
         queryset=Tag.objects.all(),
-        label='Теги',
+        widget=forms.CheckboxSelectMultiple,
         required=False,
-        help_text='Выберите один или несколько тегов',
+        label='Существующие теги'
     )
 
-
-class NoteModelForm(forms.ModelForm):
     class Meta:
         model = Note
-        fields = ['title', 'content', 'file', 'tags']
+        fields = ['title', 'content', 'tags']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
+        }
 
-    new_tag = forms.CharField(
-        required=False,
-        label='Добавить новый тег',
-        # widget=forms.TextInput(
-        #     attrs={
-        #         'class': 'form-control',
-        #     }
-        # )
-    )
+    def clean_files(self):
+        files = self.files.getlist('files')
+        for file in files:
+            if file.size > 5 * 1024 * 1024:  # 5MB
+                raise forms.ValidationError('Размер файла не должен превышать 5MB')
 
-
-class UserRegistrationForm(UserCreationForm):
-    email = forms.EmailField(required=True, label='Email')
-
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'password1', 'password2')
-
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.email = self.cleaned_data['email']
-        if commit:
-            self.save()
-        return user
+            extension = file.name.split('.')[-1].lower()
+            if extension not in ['pdf', 'doc', 'docx', 'txt', 'jpg', 'jpeg', 'png']:
+                raise forms.ValidationError(f'Формат файла .{extension} не поддерживается')
+        return files
