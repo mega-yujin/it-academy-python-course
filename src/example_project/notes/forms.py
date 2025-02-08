@@ -1,4 +1,5 @@
 from django import forms
+from django.core.validators import EmailValidator
 
 from .models import Tag, Note
 
@@ -60,3 +61,17 @@ class NoteForm(forms.ModelForm):
             if extension not in ['pdf', 'doc', 'docx', 'txt', 'jpg', 'jpeg', 'png']:
                 raise forms.ValidationError(f'Формат файла .{extension} не поддерживается')
         return files
+
+
+class NoteEmailForm(forms.Form):
+    email = forms.EmailField(
+        label='Email получателя',
+        validators=[EmailValidator()],
+        help_text='Введите email адрес'
+    )
+
+    message = forms.CharField(
+        label='Дополнительное сообщение',
+        required=False,
+        help_text='введите сообщение',
+    )

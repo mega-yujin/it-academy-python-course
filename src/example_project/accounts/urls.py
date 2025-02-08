@@ -12,9 +12,13 @@ urlpatterns = [
     ), name="password_reset_done"),
     path("reset/<uidb64>/<token>/", auth_views.PasswordResetConfirmView.as_view(
         template_name='reset/password_reset_confirm.html'
-    ),name="password_reset_confirm"),
+    ), name="password_reset_confirm"),
     path("reset/done/", auth_views.PasswordResetCompleteView.as_view(
         template_name='reset/password_reset_complete.html'
     ), name="password_reset_complete"),
+    path('password_change/', views.change_password, name='change_password'),
     path('', include('django.contrib.auth.urls')),
+    path('', views.ProfileDetailView.as_view(), name='profile'),
+    path('edit/', views.ProfileUpdateView.as_view(), name='profile_edit'),
+    path('delete/', views.UserDeleteView.as_view(), name='delete_account'),
 ]
