@@ -16,6 +16,7 @@ class Tag(models.Model):
 
 
 class Note(models.Model):
+    # id = models.UUIDField(primary_key=True, default=uuid4, help_text='Уникальный идентификатор заметки')
     title = models.CharField(max_length=200, verbose_name='Заголовок')
     content = models.TextField(verbose_name='Содержание')
     created_at = models.DateTimeField(default=timezone.now, verbose_name='Дата создания')
