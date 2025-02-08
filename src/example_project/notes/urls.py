@@ -12,4 +12,5 @@ urlpatterns = [
     path('note/<int:pk>/update/', views.NoteUpdateView.as_view(), name='note_update'),
     path('note/<int:pk>/toggle-favorite/', views.ToggleFavoriteView.as_view(), name='toggle_favorite'),
     path('note/<int:note_pk>/file/<int:pk>/delete/', views.delete_note_file, name='delete_note_file'),
+    path('note/<int:pk>/share', views.ShareNoteView.as_view(), name='share_note')
 ]
