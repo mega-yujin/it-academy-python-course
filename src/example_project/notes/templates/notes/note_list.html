@@ -41,6 +41,7 @@
                         <div class="mt-auto">
                             <a href="{% url 'note_detail' pk=note.pk %}" class="btn btn-primary btn-sm">Подробнее</a>
                             <a href="{% url 'note_update' pk=note.pk %}" class="btn btn-outline-primary btn-sm">Редактировать</a>
+                            <a href="{% url 'share_note' pk=note.pk %}" class="btn btn-outline-primary btn-sm">Поделиться</a>
                             <a href="{% url 'note_delete' pk=note.pk %}" class="btn btn-outline-danger btn-sm">Удалить</a>
                         </div>
                     </div>

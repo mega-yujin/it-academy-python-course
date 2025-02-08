@@ -1,3 +1,5 @@
+import logging
+
 from django.http import HttpRequest, HttpResponseForbidden, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View, generic
@@ -7,8 +9,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
+from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives
 
-from .forms import NoteForm
+from .forms import NoteForm, NoteEmailForm
 from .models import Note, Tag, NoteFile
 
 
@@ -150,3 +154,60 @@ def delete_note_file(request, note_pk, pk):
     file.delete()
     messages.success(request, 'Файл удален')
     return redirect('note_update', pk=note_pk)
+
+
+class ShareNoteView(generic.FormView):
+    template_name = 'notes/share_note.html'
+    email_template = 'email/note_email_share_body.html'
+    form_class = NoteEmailForm
+
+    def get_success_url(self):
+        return reverse('note_detail', kwargs={'pk': self.kwargs['pk']})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['note'] = self.get_note()
+        return context
+
+    def get_note(self):
+        return get_object_or_404(Note, pk=self.kwargs['pk'])
+
+    def form_valid(self, form):
+        try:
+            self.send_mail(
+                self.get_note(),
+                form.cleaned_data['email'],
+                form.cleaned_data['message'],
+            )
+            logging.info(f'Заметка успешно отправлена на {form.cleaned_data["email"]}')
+            messages.success(self.request, 'Письмо отправлено')
+        except Exception as err:
+            logging.warning(f'Произошла ошибка при отправке заметки {err}. Попробуйте позже.')
+            messages.error(self.request, 'Произошла ошибка при отправке')
+
+        return super().form_valid(form)
+
+    def send_mail(self, note: Note, to_email: str, message: str = None):
+        # raise Exception('SOME CRITICAL EXCEPTION!!!')
+        html_content = render_to_string(
+            self.email_template,
+            {
+                'note': note,
+                'message': message,
+            }
+        )
+
+        email = EmailMultiAlternatives(
+            subject=f'Заметка {note.title}',
+            body=html_content,
+            from_email=None,
+            to=[to_email],
+            reply_to=[note.owner.email] if note.owner.email else None
+        )
+        email.content_subtype = 'html'
+
+        if file := note.files.all():
+            for file in file:
+                email.attach_file(file.file.path)
+
+        return email.send()
