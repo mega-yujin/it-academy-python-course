@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Добавить новость{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="center-align">Добавить новую новость</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <label for="id_images">Изображения:</label>
+        <input type="file" name="images" id="id_images" multiple>
+        <button type="submit" class="btn waves-effect waves-light">Добавить</button>
+        <a href="{% url 'index' %}" class="btn waves-effect waves-light">Отмена</a>
+    </form>
+</div>
+{% endblock %}

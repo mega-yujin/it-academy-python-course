@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Все новости{% endblock %}
+
+{% block content %}
+<h1 align="left">Все новости</h1>
+{% if articles %}
+<div class="row">
+    {% for article in articles %}
+    <div class="col s12 m6 l4">
+        <h4 class="header">{{ article.title }}</h4>
+        <div class="card horizontal">
+            <div class="card-stacked">
+                <div class="card-content">
+                    <p>{{article.content}}</p>
+                    <p>{{article.created_at}}</p>
+                    <p>{% for category in article.categories.all %}
+                        {{ category.name }}{% if not forloop.last %},{% endif %}{% endfor %}</p>
+                </div>
+                <div class="card-action">
+                    <a href="{% url 'article_detail' article.id %}">Подробнее</a>
+                    {% if article.favorites %}
+                        <a href="{% url 'toggle_favorite' article.id %}">&#x2661;</a>
+                    {%else%}
+                        <a href="{% url 'toggle_favorite' article.id %}">&#x2665;</a>
+                    {% endif %}
+                    <a href="{% url 'article_delete' pk=article.pk%}">Удалить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+    <p>Новостей пока нет. <a href="{% url 'add_article' %}">Добавить первую новость</a></p>
+{% endif %}
+{% endblock %}

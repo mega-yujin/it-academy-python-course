@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+<div class="card horizontal">
+            <div class="card-stacked">
+                <div class="card-content">
+                  <h2>Регистрация</h2>
+                  <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label class="form-label">{{ field.label }}</label>
+                            {{ field.errors }}
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                  </form>
+                    <p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+                    <p>Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
+                </div>
+            </div>
+        </div>
+{% endblock %}
