@@ -15,17 +15,19 @@ class ArticleAdminView(admin.ModelAdmin):
     actions = ('publish', 'unpublish')
 
     fieldsets = (
-        ('Primary', {
-            'fields': ('title', 'content'),
-            'description': 'Primary information',
-        }
-         ),
-        ('Secondary', {
-            'fields': ('created_at', 'owner', 'is_published'),
-            'classes': ('collapse', ),
-            'description': 'Secondary information',
-        }
-         ),
+        (
+            'Primary', {
+                'fields': ('title', 'content'),
+                'description': 'Primary information',
+            }
+        ),
+        (
+            'Secondary', {
+                'fields': ('created_at', 'owner', 'is_published'),
+                'classes': ('collapse', ),
+                'description': 'Secondary information',
+            }
+        ),
     )
 
     def publish(self, request: HttpRequest, queryset: QuerySet):
