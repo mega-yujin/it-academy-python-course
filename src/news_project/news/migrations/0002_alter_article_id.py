@@ -16,4 +16,14 @@ class Migration(migrations.Migration):
             name='id',
             field=models.UUIDField(default=uuid.uuid4, primary_key=True, serialize=False),
         ),
+        migrations.RenameField(
+            model_name='article',
+            old_name='author',
+            new_name='owner',
+        ),
+        migrations.RenameField(
+            model_name='article',
+            old_name='favorites',
+            new_name='favorite',
+        ),
     ]
