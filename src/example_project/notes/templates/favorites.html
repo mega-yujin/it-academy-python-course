@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Все заметки{% endblock %}
+{% block title %}Избранные заметки{% endblock %}
 
 {% block content %}
-<h1 class="mb-4">Все заметки</h1>
+<h1 class="mb-4">Избранные заметки</h1>
 {% if notes %}
     <div class="row">
         {% for note in notes %}
@@ -14,10 +14,8 @@
                     <p class="card-text">{{ note.content }}</p>
                     <p class="text-muted">{{ note.created_at }}</p>
                     <div class="d-flex justify-content-between">
-                        <a href="{{ url_for('toggle_favorite', note_id=note.id) }}" class="btn btn-outline-warning">
-                            {% if note.is_favorite %}★{% else %}☆{% endif %}
-                        </a>
-                        <a href="{{ url_for('delete_note', note_id=note.id) }}"
+                        <a href="{{ url_for('toggle_favorite', note_id=note.id) }}" class="btn btn-outline-warning">★</a>
+                        <a href="{{ url_for('delete_note', note_id=note.id) }}" 
                            class="btn btn-outline-danger"
                            onclick="return confirm('Вы уверены, что хотите удалить эту заметку?')">
                             Удалить
@@ -29,6 +27,6 @@
         {% endfor %}
     </div>
 {% else %}
-    <p>Заметок пока нет. <a href="{{ url_for('add_note') }}">Добавить первую заметку</a></p>
+    <p>У вас пока нет избранных заметок. <a href="{{ url_for('index') }}">Вернуться к списку всех заметок</a></p>
 {% endif %}
 {% endblock %}
