@@ -1,9 +1,8 @@
 from django import forms
-
 from .models import Article, Category, ArticleImage
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.forms import inlineformset_factory
+from django.core.validators import EmailValidator
 
 # class ArticleForm(forms.Form):
 #     title = forms.CharField(
@@ -91,5 +90,14 @@ class UserRegistrationForm(UserCreationForm):
         return user
 
 class EmailArticleForm(forms.Form):
-    to_email = forms.EmailField(label='Email получателя')
-    message = forms.CharField(label='Сообщение', required=False, widget=forms.Textarea)
+    email = forms.EmailField(
+        label='Email получателя',
+        validators=[EmailValidator()],
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'example@example.com'
+        }),
+        help_text='Введите email адрес, на который нужно отправить заметку'
+    )
+
+    message = forms.CharField(widget=forms.Textarea, required=False)

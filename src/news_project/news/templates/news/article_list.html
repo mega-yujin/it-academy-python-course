@@ -48,6 +48,7 @@
                 </div>
                 <div class="card-action">
                     <a href="{% url 'article_detail' article.id %}">Подробнее</a>
+                    <a href="{% url 'share_article' article.id %}">Поделиться</a>
                     <form method="post" action="{% url 'toggle_favorite' article.id %}">
                         {% csrf_token %}
                         <button type="submit">

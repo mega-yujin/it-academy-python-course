@@ -1,8 +1,6 @@
 from django.urls import path
 from . import views
-
-
-
+from .views import ShareArticleView
 
 urlpatterns = [
     # path('', views.index, name = 'index'),
@@ -14,5 +12,6 @@ urlpatterns = [
     path('article/<int:pk>/toggle-favorite/', views.ToggleFavoriteView.as_view(), name='toggle_favorite'),
     path('article/<int:pk>/', views.ArticleDetailView.as_view(), name='article_detail'),
     # path('article/<int:pk>/update/', views.ArticleUpdateView.as_view(), name='article_update'),
-    path('article/<int:pk>/delete', views.ArticleDeleteView.as_view(), name='article_delete')
+    path('article/<int:pk>/delete', views.ArticleDeleteView.as_view(), name='article_delete'),
+    path('article/<int:pk>/share/', ShareArticleView.as_view(), name='share_article'),
 ]

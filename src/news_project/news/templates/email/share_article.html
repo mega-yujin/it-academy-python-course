@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .article {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .article-title {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .article-content {
+            color: #34495e;
+            font-size: 16px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+        .note-meta {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #666;
+            margin-top: 20px;
+        }
+        .categories {
+            margin-top: 15px;
+        }
+        .category {
+            display: inline-block;
+            background: #e9ecef;
+            padding: 3px 8px;
+            border-radius: 3px;
+            margin-right: 5px;
+            font-size: 12px;
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <div class="article">
+        <h1 class="article-title">{{ article.title }}</h1>
+        <div class="article-content">
+            {{ article.content }}
+        </div>
+
+        {% if article.categories.all %}
+        <div class="categories">
+            {% for category in article.categories.all %}
+            <span class="category">{{ category.name }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="article-meta">
+            <p>Создано: {{ article.created_at|date:"d.m.Y H:i" }}</p>
+        </div>
+    </div>
+</body>
+</html>
