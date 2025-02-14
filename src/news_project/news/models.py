@@ -21,7 +21,7 @@ class Article(models.Model):
      is_published = models.BooleanField(default=False, verbose_name='Опубликована?')
      author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='articles')
      categories = models.ManyToManyField(Category, related_name='articles')
-     favorites = models.BooleanField(default=False, verbose_name='Избранное')
+     # favorites = models.BooleanField(default=False, verbose_name='Избранное')
 
      class Meta:
          ordering = ['-created_at']
@@ -30,6 +30,13 @@ class Article(models.Model):
 
      def __str__(self):
          return self.title
+
+class FavoriteArticle(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('user', 'article')
 
 class ArticleImage(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='images')

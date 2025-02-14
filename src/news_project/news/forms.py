@@ -3,6 +3,7 @@ from .models import Article, Category, ArticleImage
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.validators import EmailValidator
+from PIL import Image
 
 # class ArticleForm(forms.Form):
 #     title = forms.CharField(
@@ -59,7 +60,7 @@ class ArticleImageForm(forms.ModelForm):
             if image.size > 5 * 1024 * 1024:
                 raise forms.ValidationError('Размер изображения не должен превышать 5MB')
 
-            from PIL import Image
+
             try:
                 img = Image.open(image)
                 if img.format.lower() not in ['jpeg', 'jpg', 'png', 'gif']:

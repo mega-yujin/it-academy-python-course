@@ -52,7 +52,7 @@
                     <form method="post" action="{% url 'toggle_favorite' article.id %}">
                         {% csrf_token %}
                         <button type="submit">
-                            {% if article.favorites %}
+                            {% if article.id in user_favorites %}
                                 ♥️
                             {%else%}
                                 ♡

@@ -1,6 +1,6 @@
 from django.http import HttpRequest
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Article, Category, ArticleImage
+from .models import Article, Category, ArticleImage,FavoriteArticle
 from django.views import View, generic
 from django.urls import reverse_lazy, reverse
 from .forms import ArticleModelForm, ArticleImageForm, EmailArticleForm
@@ -20,25 +20,32 @@ from django.contrib import messages
 #     }
 #     return render(request, 'index.html', context)
 
-class HomeView(LoginRequiredMixin, generic.ListView):
+class HomeView(generic.ListView):
     model = Article
     context_object_name = 'articles'
 
     def get_queryset(self):
-        return Article.objects.prefetch_related('categories').filter(author=self.request.user)
+        return Article.objects.prefetch_related('categories')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            context['user_favorites'] = set(FavoriteArticle.objects.filter(user=self.request.user).values_list('article_id', flat=True))
+        else:
+            context['user_favorites'] = set()  # Для анонимных пользователей
+        return context
 
 class FavoritesView(
     LoginRequiredMixin,
     generic.ListView,
 ):
-    model = Article
+    model = FavoriteArticle
+    template_name = 'news/favorites.html'
     context_object_name = 'articles'
     ordering = ['-created_at']
 
     def get_queryset(self):
-        return Article.objects.prefetch_related('categories').filter(
-            Q(author=self.request.user) & Q(favorites=True)
-        )
+        return FavoriteArticle.objects.filter(user=self.request.user).select_related('article')
 
 class ToggleFavoriteView(LoginRequiredMixin, View):
 
@@ -47,9 +54,10 @@ class ToggleFavoriteView(LoginRequiredMixin, View):
         return super().dispatch(request, *args, **kwargs)
 
     def post(self, request, pk):
-        article = get_object_or_404(Article, pk=pk, author=self.request.user)
-        article.favorites = not article.favorites
-        article.save()
+        article = get_object_or_404(Article, pk=pk)
+        favorite, created = FavoriteArticle.objects.get_or_create(user=request.user, article=article)
+        if not created:
+            favorite.delete()
         return redirect('index')
 
 # def add_article(request: HttpRequest):
