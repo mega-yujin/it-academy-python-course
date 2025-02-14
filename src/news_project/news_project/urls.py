@@ -27,8 +27,10 @@ if settings.DEBUG:
         path('debug/', include(debug_toolbar.urls)),
     ]
 
-urlpatterns += [
+urlpatterns += ([
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
+    path('api/', include('news_api.urls')),
     path('', include('news.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+])
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
