@@ -12,4 +12,5 @@ urlpatterns = [
     path('delete_article/<uuid:pk>', views.DeleteArticleView.as_view(), name='delete_article'),
     path('update_article/<uuid:pk>', views.UpdateArticleView.as_view(), name='update_article'),
     path('share/<uuid:pk>', views.ShareArticleView.as_view(), name='share_article'),
+    path('<uuid:pk>/toggle-favorite/', views.ToggleFavoriteView.as_view(), name='toggle_favorite'),
 ]

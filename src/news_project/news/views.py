@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from .models import Article, ArticleFile
+from .models import Article, ArticleImage
 from .forms import ArticleForm, ArticleEmailForm
 # from django.contrib.auth.models import User
 from django.views import generic
@@ -62,11 +62,11 @@ class AddArticleView(LoginRequiredMixin, generic.CreateView):
         article.save()
         form.save_m2m()
 
-        files = self.request.FILES.getlist('files')
-        for file in files:
-            ArticleFile.objects.create(
+        images = self.request.FILES.getlist('files')
+        for image in images:
+            ArticleImage.objects.create(
                 article=article,
-                file=file,
+                image=image,
             )
 
         return redirect('article_detail', pk=article.pk)
@@ -88,10 +88,10 @@ class DeleteArticleView(LoginRequiredMixin, generic.DeleteView):
 
 
 @login_required
-def delete_note_file(request, note_pk, pk):
+def delete_note_image(request, note_pk, pk):
     article = get_object_or_404(Article, pk=note_pk, owner=request.user)
-    file = get_object_or_404(ArticleFile, pk=pk, article=article)
-    file.delete()
+    image = get_object_or_404(ArticleImage, pk=pk, article=article)
+    image.delete()
     # messages.success(request, 'Файл удален')
     return redirect('article_update', pk=article.pk)
 
@@ -153,8 +153,21 @@ class ShareArticleView(generic.FormView):
         )
         email.content_subtype = 'html'
 
-        if file := article.files.all():
-            for file in file:
-                email.attach_file(file.file.path)
+        if image := article.files.all():
+            for image in image:
+                email.attach_file(image.image.path)
 
         return email.send()
+
+
+class ToggleFavoriteView(LoginRequiredMixin, generic.View):
+    def post(self, request, pk):
+        article = get_object_or_404(Article, pk=pk)
+        if request.user in article.favorites.all():
+            article.favorites.remove(request.user)
+            messages.success(self.request, 'Added to favorites')
+        else:
+            article.favorites.add(request.user)
+            messages.success(self.request, 'Removed from favorites')
+        article.save()
+        return redirect('index')

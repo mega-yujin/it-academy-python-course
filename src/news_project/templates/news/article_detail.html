@@ -9,12 +9,6 @@
             <h2 class="card-title">{{ article.title }}</h2>
         </div>
 
-<!--        <div class="mb-3">-->
-<!--            {% for tag in note.tags.all %}-->
-<!--                <span class="badge bg-secondary me-1">{{ tag.name }}</span>-->
-<!--            {% endfor %}-->
-<!--        </div>-->
-
         <p class="text-muted">
             Created: {{ article.created_at }}
         </p>
@@ -26,46 +20,25 @@
 
         {% if article.files.all %}
             <div class="mb-3">
-                <strong>Attached files:</strong>
+                <strong>Attached images:</strong>
                 <div class="list-group mt-2">
                     {% for file in article.files.all %}
                         <div class="list-group-item d-flex justify-content-between align-items-center">
-                            <span>{{ file.file.name|slice:"12:" }}</span>
-                            <a href="{{ file.file.url }}" class="btn btn-outline-primary btn-sm">
-                                <i class="fas fa-download"></i> Download
-                            </a>
-                        </div>
+                            <div class="card">
+                                <img src="{{ file.image.url }}"
+                                     class="card-img-top"
+                                     alt="Image"
+                                     style="object-fit: cover; height: 200px;">
+                                <span>{{ file.image.name|slice:"12:" }}</span>
+                                <a href="{{ file.image.url }}" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-download"></i> Open
+                                </a>
+                            </div>
+                </div>
                     {% endfor %}
                 </div>
             </div>
         {% endif %}
-            {% if note.images.all %}
-        <div class="note-images">
-            <h4>Прикрепленные изображения:</h4>
-            <div class="row">
-                {% for img in note.images.all %}
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <!-- Превью изображения -->
-                        <img src="{{ img.image.url }}"
-                             class="card-img-top"
-                             alt="Изображение"
-                             style="object-fit: cover; height: 200px;">
-                        <div class="card-body">
-                            <p class="card-text">
-                                <small class="text-muted">
-                                    Size: {{ img.width }}x{{ img.height }}
-                                    <br>
-                                    Uploaded: {{ img.uploaded_at|date:"d.m.Y H:i" }}
-                                </small>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-    </div>
-</div>
-{% endif %}
         </div>
     </div>
 </div>

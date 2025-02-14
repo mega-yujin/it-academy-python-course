@@ -10,7 +10,7 @@ admin.site.index_title = 'Administration'
 
 @admin.register(Article)
 class ArticleAdminView(admin.ModelAdmin):
-    list_display = ('title', 'content', 'created_at', 'owner')
+    list_display = ('title', 'content', 'created_at', 'owner', 'is_published')
     list_filter = ('owner', 'is_published')
     actions = ('publish', 'unpublish')
 

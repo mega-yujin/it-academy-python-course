@@ -30,6 +30,16 @@
                        class="btn btn-secondary">
                         Share
                     </a>
+                    <form method="post" action="{% url 'toggle_favorite' pk=article.pk %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn p-0">
+                            {% if user in article.favorites.all %}
+                                <b class="fas fa-star text-warning">★</b>
+                            {% else %}
+                                <b class="fas fa-star">☆</b>
+                            {% endif %}
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

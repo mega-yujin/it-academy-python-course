@@ -16,22 +16,20 @@ class Article(models.Model):
     is_published = models.BooleanField(verbose_name='Published?', default=False)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='articles')
     category = models.ForeignKey(Category, related_name='articles', on_delete=models.SET_NULL, null=True)
-    favorite = models.ForeignKey(
-        User, related_name='favorite_articles', blank=True,  null=True, on_delete=models.SET_NULL
-    )
+    favorites = models.ManyToManyField(User, related_name='favorite_articles', blank=True)
     id = models.UUIDField(primary_key=True, default=uuid4)
 
 
-class ArticleFile(models.Model):
+class ArticleImage(models.Model):
     article = models.ForeignKey(
         Article, on_delete=models.CASCADE, related_name='files', verbose_name='Article'
     )
-    file = models.ImageField(upload_to='news_files/', verbose_name='File')
+    image = models.ImageField(upload_to='news_images/', verbose_name='Image')
     uploaded_at = models.DateTimeField(auto_now_add=True, verbose_name='Upload date')
 
     class Meta:
-        verbose_name = 'Article file'
-        verbose_name_plural = 'Article files'
+        verbose_name = 'Article image'
+        verbose_name_plural = 'Article images'
 
     def __str__(self):
-        return f'Article files {self.article.title}'
+        return f'Article image {self.article.title}'
