@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Новости{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <style>
+        .nav-wrapper ul {
+            display: flex;
+        }
+        .container {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .col {
+            flex: 1 1 calc(33.333% - 10px);
+        }
+
+        .header {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+  <nav class="nav-extended">
+    <div class="nav-wrapper">
+      <a class="brand-logo">Новости</a>
+      {% if user.is_authenticated %}
+          <ul class="right hide-on-med-and-down">
+            <li><a href="{% url 'index' %}">Все новости</a></li>
+            <li><a href="{% url 'favorites' %}">Избранные</a></li>
+            <li class="plus-button">
+              <a href="{% url 'add_article' %}" class="btn-floating btn-large waves-effect waves-light teal">
+                <i class="material-icons">+</i>
+              </a>
+            </li>
+            <li><a href="{% url 'login' %}">Выйти</a></li>
+          </ul>
+      {% else %}
+            <ul class="right hide-on-med-and-down">
+                <li><a href="{% url 'login' %}">Войти</a></li>
+                <li><a href="{% url 'signup' %}">Зарегистрироваться</a></li>
+          </ul>
+      {% endif %}
+    </div>
+  </nav>
+  <div class="container">
+      {% if messages %}
+          {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                  {{ message }}
+              </div>
+          {% endfor %}
+      {% endif %}
+      {% block content %}{% endblock %}
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

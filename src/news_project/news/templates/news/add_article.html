@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Добавить новость{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="center-align">Добавить новую новость</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="col s12">
+                    <label>Заголовок:</label>
+                    {{form.title}}
+                    <span class="helper-text" data-error="wrong" data-success="right">{{ form.title.errors }}</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+                    <label>Категории:</label>
+                    {% for category in form.categories %}
+                        <p>
+                            <label>
+                                {{ category.tag }}
+                                <span>{{ category.choice_label }}</span>
+                            </label>
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+                    <label>Содержание:</label>
+                    {{form.content }}
+                    <span class="helper-text" data-error="wrong" data-success="right">{{ form.content.errors }}</span>
+                </div>
+            </div>
+
+            <label for="id_images">Изображения:</label>
+            <input type="file" name="images" id="id_images" multiple>
+
+            <button type="submit" class="btn waves-effect waves-light">Добавить</button>
+            <a href="{% url 'index' %}" class="btn waves-effect waves-light">Отмена</a>
+        </form>
+    </div>
+{% endblock %}

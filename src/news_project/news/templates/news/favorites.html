@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Все новости{% endblock %}
+
+{% block content %}
+{% for favorite in articles %}
+<div class="col s12 m6 l4">
+        <h4 class="header">{{ favorite.article.title }}</h4>
+        <div class="card horizontal">
+            <div class="card-stacked">
+                <div class="card-content">
+                    <p>{{favorite.article.content}}</p>
+                    <p>{{favorite.article.created_at}}</p>
+                    <div>
+                        {% for category in favorite.article.categories.all %}
+                            <span>{{ category.name }}</span>
+                        {% endfor %}
+                    </div>
+                    {% if favorite.article.images.all %}
+                    <div class="article-images">
+                        <h4>Прикрепленные изображения:</h4>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            {% for img in favorite.article.images.all %}
+                            <div style="border: 1px solid #ccc; padding: 10px; width: 200px;">
+                                <img src="{{ img.image.url }}" alt="Изображение"
+                                     style="object-fit: cover; width: 100%; height: 200px;">
+                                <p>Размер: {{img.width}}x{{img.height}}</p>
+                                <p>Загружено: {{img.uploaded_at|date:"d.m.Y H:i"}}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="card-action">
+                    <a href="{% url 'index' %}">Назад к списку</a>
+                    <a href="{% url 'article_delete' pk=favorite.article.pk%}">Удалить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
