@@ -18,7 +18,7 @@ class Article(models.Model):
      title = models.CharField(max_length=100, verbose_name='Заголовок')
      content = models.TextField(verbose_name='Содержание')
      created_at = models.DateTimeField(default=timezone.now, verbose_name='Дата создания')
-     is_published = models.BooleanField(default=False, verbose_name='Опубликована?')
+     # is_published = models.BooleanField(default=False, verbose_name='Опубликована?')
      author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='articles')
      categories = models.ManyToManyField(Category, related_name='articles')
      # favorites = models.BooleanField(default=False, verbose_name='Избранное')
