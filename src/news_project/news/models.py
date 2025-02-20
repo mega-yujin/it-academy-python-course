@@ -10,11 +10,26 @@ class Category(models.Model):
 
 
 class Article(models.Model):
-    title = models.CharField(max_length=100, verbose_name='Заголовок')
-    content = models.TextField(verbose_name='Содержание')
-    created_at = models.DateTimeField(verbose_name='Дата создания', default=timezone.now)
-    is_published = models.BooleanField(verbose_name='Опубликована?', default=False)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='articles')
+    title = models.CharField(max_length=100, verbose_name='Title')
+    content = models.TextField(verbose_name='Content')
+    created_at = models.DateTimeField(verbose_name='Creation date', default=timezone.now)
+    is_published = models.BooleanField(verbose_name='Published?', default=False)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='articles')
     category = models.ForeignKey(Category, related_name='articles', on_delete=models.SET_NULL, null=True)
     favorites = models.ManyToManyField(User, related_name='favorite_articles', blank=True)
     id = models.UUIDField(primary_key=True, default=uuid4)
+
+
+class ArticleImage(models.Model):
+    article = models.ForeignKey(
+        Article, on_delete=models.CASCADE, related_name='files', verbose_name='Article'
+    )
+    image = models.ImageField(upload_to='news_images/', verbose_name='Image')
+    uploaded_at = models.DateTimeField(auto_now_add=True, verbose_name='Upload date')
+
+    class Meta:
+        verbose_name = 'Article image'
+        verbose_name_plural = 'Article images'
+
+    def __str__(self):
+        return f'Article image {self.article.title}'
