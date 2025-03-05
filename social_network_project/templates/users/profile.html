@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="bg-white rounded-lg shadow-md p-6">
+    {% if profile_user == user %}
+    <a href="{% url 'friend-requests' %}">Friend requests</a>
+    {% endif %}
+    <div class="flex items-center space-x-6 mb-6">
+        <div>
+            <h1 class="text-3xl font-bold">{{ profile_user.username }}</h1>
+            {% if profile_user.avatar.url %}
+            <img src="{{ profile_user.avatar.url }}"
+                 class="w-20 h-20 rounded-full object-cover">
+            {% else %}
+            <img src="{{ avatars.default.png}}">
+            {% endif %}
+            <p class="text-gray-600">{{ profile_user.bio }}</p>
+        </div>
+    </div>
+    
+    <div class="border-t pt-6">
+        <h2 class="text-xl font-semibold mb-4">Account Details</h2>
+        <div class="space-y-2">
+            <p><span class="font-medium">Email:</span> {{ profile_user.email }}</p>
+            <p><span class="font-medium">Joined:</span> {{ profile_user.date_joined|date:"M d, Y" }}</p>
+            <h1>Friends:</h1>
+            {% for friend in profile_user.friends.all %}
+            <p>
+                <a href="{% url 'profile' friend.username %}" class="text-blue-500">{{friend}}</a>
+                <a href="{% url 'unfriend' friend.pk %}"
+                class="text-red-400">Unfriend</a>
+            </p>
+            {% endfor %}
+        </div>
+        {% if profile_user == user %}
+        <a href="{% url 'profile-edit' profile_user.username %}" class="mt-4 inline-block px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">
+            Edit Profile
+        </a>
+        {% else %}
+        <a href="{% url 'post-list' profile_user %}">See posts</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
