@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+    <h1 class="text-2xl font-bold mb-6">Friend Requests</h1>
+    <div class="space-y-4">
+        {% for request in friend_requests %}
+        <h>123</h>
+        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+            <div class="flex items-center space-x-4">
+                <span>{{ request.from_user.username }}</span>
+            </div>
+            <div class="flex space-x-2">
+                <a href="{% url 'accept_request' request.pk request.from_user.pk %}"
+                   class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+                   Accept
+                </a>
+                <a href="{% url 'delete-request' request.pk %}"
+                   class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+                   Reject
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-gray-500">No pending friend requests</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

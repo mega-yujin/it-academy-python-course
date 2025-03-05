@@ -22,27 +22,25 @@ class MultipleImageField(forms.ImageField):
 
 
 class ArticleForm(forms.ModelForm):
-    files = MultipleImageField(
+    images = MultipleImageField(
         required=False,
         label='Files',
         widget=MultipleFileInput(attrs={'class': 'form-control'})
     )
 
-    new_category = forms.CharField(
+    new_category_name = forms.CharField(
         required=False,
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Введите название нового тега'
+            'placeholder': 'Category name'
         }),
-        label='Создать новый тег'
     )
     new_category_description = forms.CharField(
         required=False,
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Введите description нового тега'
+            'placeholder': 'Category description'
         }),
-        label='Создать новый тег'
     )
     category = forms.ModelMultipleChoiceField(
         queryset=Category.objects.all(),

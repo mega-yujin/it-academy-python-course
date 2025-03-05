@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from .models import Article, ArticleImage
+from .models import Article, ArticleImage, Category
 from .forms import ArticleForm, ArticleEmailForm
 # from django.contrib.auth.models import User
 from django.views import generic
@@ -17,6 +17,7 @@ from django.template.loader import render_to_string
 class HomeView(LoginRequiredMixin, generic.ListView):
     model = Article
     context_object_name = 'articles'
+    ordering = ['-created_at']
 
     # def get_queryset(self):
     #     return Article.objects.prefetch_related('tags').filter(owner=self.request.user)
@@ -62,6 +63,17 @@ class AddArticleView(LoginRequiredMixin, generic.CreateView):
         article.save()
         form.save_m2m()
 
+        new_category_name = form.cleaned_data.get('new_category')
+        new_category_description = form.cleaned_data.get('new_category_description')
+        if new_category_name:
+            category, created = Category.objects.get_or_create(
+                name=new_category_name,
+                description=new_category_description
+            )
+
+        if new_category_name:
+            article.category.add(category)
+
         images = self.request.FILES.getlist('files')
         for image in images:
             ArticleImage.objects.create(
@@ -99,8 +111,35 @@ def delete_note_image(request, note_pk, pk):
 class UpdateArticleView(LoginRequiredMixin, generic.UpdateView):
     model = Article
     template_name = 'news/update_article.html'
-    success_url = reverse_lazy('index')
-    fields = ['title', 'content']
+    form_class = ArticleForm
+
+    def form_valid(self, form):
+
+        # Обрабатываем новые теги
+        new_category_name = form.cleaned_data.get('new_category')
+        if new_category_name:
+            category, created_at = Category.objects.get_or_create(
+                name=new_category_name,
+            )
+            self.object.category.add(category)
+
+        # Обрабатываем новые файлы
+        files = self.request.FILES.getlist('files')
+        for file in files:
+            ArticleImage.objects.create(
+                article=self.object,
+                file=file,
+            )
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('article_detail', kwargs={'pk': self.object.pk})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['has_categories'] = Category.objects.exists()
+        return context
 
 
 class ShareArticleView(generic.FormView):

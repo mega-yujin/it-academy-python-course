@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Article
+from .models import Article, Category
 from django.http import HttpRequest
 from django.db.models import QuerySet
 
@@ -12,12 +12,12 @@ admin.site.index_title = 'Administration'
 class ArticleAdminView(admin.ModelAdmin):
     list_display = ('title', 'content', 'created_at', 'owner', 'is_published')
     list_filter = ('owner', 'is_published')
-    actions = ('publish', 'unpublish')
+    actions = ('privatise', 'unprivatise')
 
     fieldsets = (
         (
             'Primary', {
-                'fields': ('title', 'content'),
+                'fields': ('title', 'content', 'category'),
                 'description': 'Primary information',
             }
         ),
@@ -35,3 +35,8 @@ class ArticleAdminView(admin.ModelAdmin):
 
     def unpublish(self, request: HttpRequest, queryset: QuerySet):
         queryset.update(is_published=False)
+
+
+@admin.register(Category)
+class CategoryAdminView(admin.ModelAdmin):
+    list_display = ('name', )

@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <!-- Search and Filter Bar -->
+    <div class="mb-6 p-4 bg-white rounded-lg shadow flex gap-4">
+        <form method="get" class="flex-1">
+            <input
+                type="text"
+                name="q"
+                value="{{ search_query }}"
+                placeholder="Search posts "
+                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+        </form>
+        <a href="{% url 'post-list' user %}"
+            class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition">
+            Clear
+        </a>
+    </div>
+
+    <!-- Hashtag Filters -->
+    <div class="mb-6 p-4 bg-white rounded-lg shadow">
+        <h3 class="font-semibold mb-2">Popular Hashtags</h3>
+        <div class="flex flex-wrap gap-2">
+            {% for hashtag in popular_hashtags %}
+            <a href="?hashtag={{ hashtag.name }}"
+               class="px-2 py-1 bg-blue-100 text-blue-800 text-sm rounded-full hover:bg-blue-200 transition">
+                #{{ hashtag.name }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% if is_user_page %}
+    <div class="mb-6 p-4 bg-white rounded-lg shadow">
+        <a href="{% url 'post-create' %}" class="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+            + Create New Post
+        </a>
+    </div>
+    {% endif %}
+
+    <!-- Post List -->
+    {% for post in object_list %}
+    {% if not post.is_private or user == post.author %}
+    <div class="mb-4 p-6 bg-white rounded-lg shadow">
+        <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center space-x-3">
+                <div>
+                    <h3 class="font-bold">{{ post.author.username }}</h3>
+                    <p class="text-sm text-gray-500">{{ post.created_at|timesince }} ago</p>
+                </div>
+            </div>
+            {% if user == post.author %}
+            <div class="flex space-x-2">
+                <a href="{% url 'post-delete' post.pk %}" class="text-red-500 hover:text-red-700">Delete</a>
+            </div>
+            <div class="flex space-x-2">
+                <a href="{% url 'post-update' post.pk %}" class="text-blue-500 hover:text-red-700">Update</a>
+            </div>
+            {% endif %}
+        </div>
+
+        <p class="mb-4">{{ post.content }}</p>
+
+        {% for hashtag in post.hashtags.all %}
+        <i class="text-sm text-gray-500">{{hashtag}}</i>
+        {% endfor %}
+
+        <div class="flex items-center space-x-4 text-gray-500">
+            <form method="post" action="{% url 'like-post' post.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="flex items-center space-x-1">
+                    {% if user in post.likes.all %}
+                        <span class="text-red-500">❤</span>
+                    {% else %}
+                        <span class="text-white-500">🤍</span>
+                    {% endif %}
+                    <span>{{ post.likes.count }}</span>
+                </button>
+            </form>
+            {% if post.is_private %}
+            <span class="text-sm">🔒 Private</span>
+            {% endif %}
+        </div>
+<div class="mt-4">
+    <h4 class="font-semibold mb-2">Comments</h4>
+
+    <!-- Comment Form -->
+    {% if user.is_authenticated %}
+    <form method="post" action="{% url 'add-comment' post.id %}" class="mb-4">
+        {% csrf_token %}
+        <textarea
+            name="content"
+            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            rows="3"
+            placeholder="Write a comment..."
+        ></textarea>
+        <button type="submit" class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            Add Comment
+        </button>
+    </form>
+    {% endif %}
+
+    <!-- Comments List -->
+    <div class="space-y-4">
+        {% for comment in post.comments.all %}
+        <div class="p-4 bg-gray-50 rounded-lg">
+            <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center space-x-2">
+                    <span class="font-semibold">{{ comment.author.username }}</span>
+                    <span class="text-sm text-gray-500">{{ comment.created_at|timesince }} ago</span>
+                </div>
+                {% if user == comment.author %}
+                <div class="flex space-x-2">
+                    <a href="{% url 'edit-comment' comment.id %}" class="text-blue-500 hover:text-blue-700">Edit</a>
+                    <a href="{% url 'delete-comment' comment.id %}" class="text-red-500 hover:text-red-700">Delete</a>
+                </div>
+                {% endif %}
+            </div>
+            <p class="text-gray-800">{{ comment.content }}</p>
+        </div>
+        {% empty %}
+        <p class="text-gray-500">No comments yet</p>
+        {% endfor %}
+    </div>
+</div></div>
+    {% endif %}
+    {% endfor %}
+</div>
+    <p class="text-center text-gray-500 py-8">
+        {% if search_query or hashtag_filter %}
+        No posts found matching your search
+        {% endif %}
+    </p>
+</div>
+{% endblock %}

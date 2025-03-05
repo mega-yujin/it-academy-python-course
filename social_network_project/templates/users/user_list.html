@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+    <h1 class="text-2xl font-bold mb-6">All Users</h1>
+    <div class="space-y-4">
+        {% for user in users %}
+        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+            <div class="flex items-center space-x-4">
+                <a href="{% url 'profile' user.username %}">{{ user.username }}</a>
+            </div>
+            {% if user != request.user and user not in request.user.friends.all %}
+            <a href="{% url 'send-request' user %}"
+               class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+               Add Friend
+            </a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
