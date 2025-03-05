@@ -1,8 +1,7 @@
-from django.contrib.auth import login, logout
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import DetailView, UpdateView
 from django.urls import reverse_lazy
 from django.views import generic
 from .models import User, FriendshipRequest
@@ -20,7 +19,6 @@ class UserListView(generic.ListView):
         qs = super().get_queryset()
         search_query = self.request.GET.get('q')
 
-        # Search by content or author
         if search_query:
             qs = qs.filter(
                 Q(username__icontains=search_query)
@@ -40,7 +38,7 @@ class RegisterView(generic.CreateView):
         return redirect('profile')
 
 
-class ProfileView(LoginRequiredMixin, DetailView):
+class ProfileView(LoginRequiredMixin, generic.DetailView):
     model = User
     template_name = 'users/profile.html'
     context_object_name = 'profile_user'
@@ -54,7 +52,7 @@ class ProfileView(LoginRequiredMixin, DetailView):
             return self.request.user
 
 
-class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+class ProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = User
     fields = ['username', 'email', 'bio', 'avatar']
     template_name = 'users/profile_edit.html'

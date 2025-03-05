@@ -1,12 +1,11 @@
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, get_object_or_404, render
 from .models import Post, Hashtag, Comment
 from users.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q, Count
-from django.views.generic import UpdateView
 from .forms import PostForm, CommentForm
 import re
 
@@ -46,8 +45,8 @@ class PostListView(ListView):
         ).order_by('-post_count')[:10]
 
         context['is_user_page'] = (
-                self.request.user.is_authenticated and
-                self.request.user.username == self.kwargs['username']
+            self.request.user.is_authenticated and
+            self.request.user.username == self.kwargs['username']
         )
 
         return context
@@ -189,6 +188,5 @@ def edit_comment(request, pk):
 @login_required
 def delete_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk, author=request.user)
-    post_author_username = comment.post.author.username
     comment.delete()
     return redirect('post-list-recent')

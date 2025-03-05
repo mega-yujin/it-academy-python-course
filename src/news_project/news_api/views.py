@@ -1,14 +1,10 @@
-from rest_framework import viewsets, permissions, filters, renderers
+from rest_framework import viewsets, permissions, renderers
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.throttling import UserRateThrottle
-from rest_framework.pagination import PageNumberPagination
-from django.shortcuts import redirect, render, get_object_or_404
-from .models import Article, Category, ArticleImage
-from .serializers import CategorySerializer, ArticleSerializer, ArticleCreateSerializer
-from .forms import ArticleForm
+from django.shortcuts import redirect, render
+from .models import Article, Category
+from .serializers import ArticleSerializer, ArticleCreateSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
-from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 
 
