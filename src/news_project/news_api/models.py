@@ -22,16 +22,16 @@ class Article(models.Model):
     created_at = models.DateTimeField(verbose_name='Creation date', default=timezone.now)
     is_published = models.BooleanField(verbose_name='Published?', default=False)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='articles')
-    category = models.ManyToManyField(Category, related_name='articles', blank=True)
+    categories = models.ManyToManyField(Category, related_name='articles', blank=True)
     favorites = models.ManyToManyField(User, related_name='favorite_articles', blank=True)
     id = models.UUIDField(primary_key=True, default=uuid4)
 
 
 class ArticleImage(models.Model):
     article = models.ForeignKey(
-        Article, on_delete=models.CASCADE, related_name='files', verbose_name='Article'
+        Article, on_delete=models.CASCADE, related_name='images', verbose_name='Article'
     )
-    image = models.ImageField(upload_to='news_images/', verbose_name='Image')
+    images = models.ImageField(upload_to='news_images/', verbose_name='Images')
     uploaded_at = models.DateTimeField(auto_now_add=True, verbose_name='Upload date')
 
     class Meta:

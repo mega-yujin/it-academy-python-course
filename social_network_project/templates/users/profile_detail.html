@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+    <div class="flex items-center space-x-4 mb-6">
+        <img src="{{ profile.avatar.url }}" alt="Avatar" class="w-20 h-20 rounded-full">
+        <div>
+            <h1 class="text-2xl font-bold">{{ profile.user.username }}</h1>
+            <p class="text-gray-600">{{ profile.bio }}</p>
+        </div>
+    </div>
+    
+    <div class="border-t pt-4">
+        <h2 class="text-xl font-semibold mb-4">Friends ({{ profile.friends.count }})</h2>
+        <div class="grid grid-cols-2 gap-4">
+            {% for friend in profile.friends.all %}
+            <div class="flex items-center space-x-2">
+                <img src="{{ friend.profile.avatar.url }}" class="w-8 h-8 rounded-full">
+                <span>{{ friend.username }}</span>
+            </div>
+            {% empty %}
+            <p class="text-gray-500">No friends yet</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

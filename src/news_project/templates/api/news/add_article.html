@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Add article{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Add article</h1>
+<form method="post" action="{% url 'article-list' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" name="title" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Content</label>
+        <textarea name="content" class="form-control" rows="5" required></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Select Categories</label>
+        <select name="categories" class="form-select" multiple>
+            {% for category in categories %}
+                <option value="{{ category.pk }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Or Create New Category</label>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <input type="text" name="new_category_name"
+                       class="form-control" placeholder="Category Name">
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="new_category_description"
+                       class="form-control" placeholder="Category Description">
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Images</label>
+        <input type="file" name="images" class="form-control" multiple>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="{% url 'article-list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
